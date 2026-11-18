@@ -1,0 +1,2221 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HKDSE Biology Elective 1 | 人體生理學：調節與控制 (Regulation &amp; Control)</title>
+  <!-- Load Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Load Google Fonts: Inter, Noto Sans TC, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '"Noto Sans TC"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            bio: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              200: '#99f6e4',
+              600: '#0d9488',
+              700: '#0f766e',
+              800: '#115e59',
+              900: '#134e4a',
+              950: '#042f2e',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Subtle biomedical grid background */
+    body {
+      background-color: #f8fafc;
+      background-image:
+        radial-gradient(at 0% 0%, rgba(13, 148, 136, 0.06) 0px, transparent 50%),
+        linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+      background-size: 100% 100%, 28px 28px, 28px 28px;
+      color: #0f172a;
+    }
+
+    /* Strict HKDSE English Biological Keyword Underlined Highlight */
+    u.kw {
+      text-decoration: underline;
+      text-decoration-color: #0d9488;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+      font-weight: 700;
+      color: #064e3b;
+      background-color: rgba(204, 251, 241, 0.65);
+      padding: 0 4px;
+      border-radius: 3px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Command word badge styling for Paper 2 */
+    u.cmd {
+      text-decoration: underline;
+      text-decoration-color: #e11d48;
+      text-decoration-thickness: 2.5px;
+      text-underline-offset: 3px;
+      font-weight: 800;
+      color: #be123c;
+      background-color: #ffe4e6;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Custom Range Sliders */
+    input[type="range"].bio-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 10px;
+      border-radius: 999px;
+      background: #e2e8f0;
+      outline: none;
+      cursor: pointer;
+    }
+    input[type="range"].bio-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #0f766e;
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 6px rgba(15, 118, 110, 0.45);
+      cursor: pointer;
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+    input[type="range"].bio-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.12);
+      background: #115e59;
+    }
+    input[type="range"].bio-slider::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #0f766e;
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 6px rgba(15, 118, 110, 0.45);
+      cursor: pointer;
+    }
+
+    /* SVG Animations */
+    @keyframes pulseFlow {
+      0% { stroke-dashoffset: 36; }
+      100% { stroke-dashoffset: 0; }
+    }
+    .animate-flow {
+      stroke-dasharray: 6 6;
+      animation: pulseFlow 1.2s linear infinite;
+    }
+    .animate-flow-fast {
+      stroke-dasharray: 6 6;
+      animation: pulseFlow 0.45s linear infinite;
+    }
+    .animate-flow-slow {
+      stroke-dasharray: 6 6;
+      animation: pulseFlow 2.6s linear infinite;
+    }
+
+    @keyframes shiverShake {
+      0%, 100% { transform: translateX(0px); }
+      25% { transform: translateX(-2.5px); }
+      75% { transform: translateX(2.5px); }
+    }
+    .shiver-active {
+      animation: shiverShake 0.14s infinite;
+    }
+
+    @keyframes heatRise {
+      0% { transform: translateY(0px); opacity: 0.9; }
+      100% { transform: translateY(-14px); opacity: 0; }
+    }
+    .heat-wave {
+      animation: heatRise 1.6s ease-out infinite;
+    }
+
+    /* Hide scrollbars cleanly for horizontal nav pills on mobile */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-teal-200 selection:text-teal-950">
+
+  <!-- Top Mobile / Tablet Header -->
+  <header class="lg:hidden sticky top-0 z-40 bg-teal-900 text-white shadow-md">
+    <div class="px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-teal-700 border border-teal-500/50 flex items-center justify-center font-bold text-teal-100 shadow-inner">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <div>
+          <div class="text-[11px] uppercase tracking-wider text-teal-300 font-semibold">HKDSE Biology · Elective 1</div>
+          <h1 class="text-sm font-bold leading-tight">人體生理學：調節與控制</h1>
+        </div>
+      </div>
+      <span class="text-xs bg-teal-800 border border-teal-600 px-2.5 py-1 rounded-full font-mono text-teal-100">Paper 2</span>
+    </div>
+
+    <!-- Mobile Horizontal Module Selector -->
+    <nav class="flex overflow-x-auto no-scrollbar px-3 pb-2.5 gap-2 border-t border-teal-800/80 pt-2" id="mobile-nav">
+      <button onclick="switchModule(1)" data-mod="1" class="nav-btn-mobile shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all bg-white text-teal-900 shadow-sm">
+        1. 水分調節 Osmoregulation
+      </button>
+      <button onclick="switchModule(2)" data-mod="2" class="nav-btn-mobile shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all bg-teal-800/80 text-teal-100 hover:bg-teal-700">
+        2. 體溫調節 Thermoregulation
+      </button>
+      <button onclick="switchModule(3)" data-mod="3" class="nav-btn-mobile shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all bg-teal-800/80 text-teal-100 hover:bg-teal-700">
+        3. 氣體與運動 Gas &amp; Exercise
+      </button>
+      <button onclick="switchModule(4)" data-mod="4" class="nav-btn-mobile shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all bg-teal-800/80 text-teal-100 hover:bg-teal-700">
+        4. 生殖週期 Reproductive Cycle
+      </button>
+      <button onclick="switchModule(5)" data-mod="5" class="nav-btn-mobile shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all bg-amber-500/20 text-amber-200 border border-amber-400/40 hover:bg-amber-500/30">
+        5. DSE Paper 2 實戰題庫
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main App Shell -->
+  <div class="max-w-[1440px] mx-auto flex flex-col lg:flex-row min-h-screen">
+
+    <!-- Desktop Left Sidebar -->
+    <aside class="hidden lg:flex lg:w-80 lg:flex-col lg:fixed lg:inset-y-0 bg-gradient-to-b from-teal-950 via-teal-900 to-slate-900 text-white border-r border-teal-800/60 shadow-xl z-30">
+      <!-- Brand / Syllabus Header -->
+      <div class="p-6 border-b border-teal-800/70">
+        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-teal-800/80 border border-teal-600/50 text-teal-200 text-xs font-semibold tracking-wide mb-3">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          HKDSE BIO · ELECTIVE 1 (TOPIC V)
+        </div>
+        <h1 class="text-xl font-extrabold tracking-tight text-white leading-snug">
+          人體生理學：<br />調節與控制
+        </h1>
+        <p class="text-xs text-teal-200/90 mt-1 font-medium">
+          Human Physiology: Regulation &amp; Control
+        </p>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="flex-1 px-4 py-5 space-y-2 overflow-y-auto" id="desktop-nav">
+        <div class="px-2 pb-1 text-[11px] font-bold uppercase tracking-wider text-teal-400">
+          核心課題模擬器 (Core Modules)
+        </div>
+
+        <button onclick="switchModule(1)" data-mod="1" class="nav-btn-desktop w-full text-left px-3.5 py-3 rounded-xl transition-all flex items-start gap-3 bg-white text-teal-950 shadow-md">
+          <span class="w-7 h-7 rounded-lg bg-teal-100 text-teal-800 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">01</span>
+          <div>
+            <div class="text-sm font-bold leading-tight">水分調節 (滲透調節)</div>
+            <div class="text-xs text-teal-700 font-medium mt-0.5">Osmoregulation &amp; ADH</div>
+          </div>
+        </button>
+
+        <button onclick="switchModule(2)" data-mod="2" class="nav-btn-desktop w-full text-left px-3.5 py-3 rounded-xl transition-all flex items-start gap-3 text-teal-100 hover:bg-teal-800/60">
+          <span class="w-7 h-7 rounded-lg bg-teal-800/90 text-teal-200 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">02</span>
+          <div>
+            <div class="text-sm font-bold leading-tight">體溫調節</div>
+            <div class="text-xs text-teal-300/90 font-medium mt-0.5">Thermoregulation &amp; Skin</div>
+          </div>
+        </button>
+
+        <button onclick="switchModule(3)" data-mod="3" class="nav-btn-desktop w-full text-left px-3.5 py-3 rounded-xl transition-all flex items-start gap-3 text-teal-100 hover:bg-teal-800/60">
+          <span class="w-7 h-7 rounded-lg bg-teal-800/90 text-teal-200 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">03</span>
+          <div>
+            <div class="text-sm font-bold leading-tight">血液氣體成分與運動</div>
+            <div class="text-xs text-teal-300/90 font-medium mt-0.5">Gas Content &amp; Exercise</div>
+          </div>
+        </button>
+
+        <button onclick="switchModule(4)" data-mod="4" class="nav-btn-desktop w-full text-left px-3.5 py-3 rounded-xl transition-all flex items-start gap-3 text-teal-100 hover:bg-teal-800/60">
+          <span class="w-7 h-7 rounded-lg bg-teal-800/90 text-teal-200 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">04</span>
+          <div>
+            <div class="text-sm font-bold leading-tight">生殖週期的激素控制</div>
+            <div class="text-xs text-teal-300/90 font-medium mt-0.5">Hormonal Control of Cycle</div>
+          </div>
+        </button>
+
+        <div class="pt-3 px-2 pb-1 text-[11px] font-bold uppercase tracking-wider text-amber-300">
+          應試特訓 (Exam Assessment)
+        </div>
+
+        <button onclick="switchModule(5)" data-mod="5" class="nav-btn-desktop w-full text-left px-3.5 py-3 rounded-xl transition-all flex items-start gap-3 bg-amber-500/15 border border-amber-400/30 text-amber-100 hover:bg-amber-500/25">
+          <span class="w-7 h-7 rounded-lg bg-amber-500/30 text-amber-200 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">P2</span>
+          <div>
+            <div class="text-sm font-bold leading-tight">DSE Paper 2 實戰題庫</div>
+            <div class="text-xs text-amber-200/90 font-medium mt-0.5">Marking Scheme &amp; Drill</div>
+          </div>
+        </button>
+      </nav>
+
+      <!-- Biology Teacher's Homeostasis Blueprint Card -->
+      <div class="p-4 m-4 rounded-2xl bg-teal-900/70 border border-teal-700/60 text-xs">
+        <div class="font-bold text-emerald-300 flex items-center gap-1.5 mb-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          Bio Sir 奪星因果框架 (5** Blueprint)
+        </div>
+        <p class="text-teal-100/90 leading-relaxed">
+          所有 Paper 2 長題目必須嚴格按以下五步曲作答，並準確寫出<span class="underline decoration-emerald-400 font-semibold text-white">底線英文關鍵詞</span>：
+        </p>
+        <div class="mt-2 p-2 rounded-lg bg-slate-950/60 font-mono text-[10px] text-emerald-200 leading-relaxed">
+          Stimulus → Receptor → Coordination Centre → Effector → Response (Negative Feedback)
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 lg:pl-80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8 space-y-6">
+
+        <!-- =====================================================================
+             MODULE 1: REGULATION OF WATER CONTENT (OSMOREGULATION)
+             ===================================================================== -->
+        <section id="module-1" class="module-section space-y-6">
+          <!-- Module Header Banner -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/90 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <div class="inline-flex items-center gap-2 text-xs font-bold text-teal-700 bg-teal-50 border border-teal-200 px-3 py-1 rounded-full mb-2">
+                Subtopic 5.1 · 滲透調節 (Osmoregulation)
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                水分調節：<u class="kw">ADH</u> 與集尿管通透性
+              </h2>
+              <p class="text-sm text-slate-600 mt-1">
+                透過負反饋機制 (<u class="kw">negative feedback mechanism</u>) 維持血液水勢 (<u class="kw">water potential</u>) 恆定。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button onclick="setOsmoregulationPreset(12)" class="px-3 py-2 rounded-xl text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100 transition">
+                🏜️ 缺水 / 大量排汗
+              </button>
+              <button onclick="setOsmoregulationPreset(50)" class="px-3 py-2 rounded-xl text-xs font-bold bg-teal-50 text-teal-800 border border-teal-200 hover:bg-teal-100 transition">
+                ⚖️ 正常水平 (Normal)
+              </button>
+              <button onclick="setOsmoregulationPreset(90)" class="px-3 py-2 rounded-xl text-xs font-bold bg-blue-50 text-blue-800 border border-blue-200 hover:bg-blue-100 transition">
+                💧 大量飲水 (Excess Water)
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Simulation Card -->
+          <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200/90 space-y-5">
+            <!-- Slider Control Bar -->
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                <label for="osmo-slider" class="text-sm font-bold text-slate-800 flex items-center gap-2">
+                  <span>調節變項：血液水勢 (<u class="kw">Water Potential of Blood</u>)</span>
+                </label>
+                <span id="osmo-state-badge" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-teal-100 text-teal-900">
+                  正常狀態 (Normal Blood Water Potential)
+                </span>
+              </div>
+              <input id="osmo-slider" type="range" min="0" max="100" value="50" class="bio-slider w-full" oninput="updateOsmoregulation(this.value)" />
+              <div class="flex justify-between text-[11px] font-semibold text-slate-500 mt-1.5">
+                <span>← 水勢大幅下降 (Dehydration / Sweating)</span>
+                <span>正常設定點 (Set Point)</span>
+                <span>水勢大幅上升 (Excessive Water Intake) →</span>
+              </div>
+            </div>
+
+            <!-- Live Physiological Readouts -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <div class="text-[11px] font-bold text-slate-500 uppercase">Osmoreceptor 脈衝頻率</div>
+                <div id="osmo-metric-impulses" class="text-base sm:text-lg font-extrabold font-mono text-purple-700 mt-0.5">Moderate (適中)</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <div class="text-[11px] font-bold text-slate-500 uppercase">Pituitary 釋放 ADH 量</div>
+                <div id="osmo-metric-adh" class="text-base sm:text-lg font-extrabold font-mono text-indigo-700 mt-0.5">Normal (正常)</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <div class="text-[11px] font-bold text-slate-500 uppercase">集尿管壁通透性</div>
+                <div id="osmo-metric-perm" class="text-base sm:text-lg font-extrabold font-mono text-teal-700 mt-0.5">Moderate (中等)</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <div class="text-[11px] font-bold text-slate-500 uppercase">最終尿液性狀 (Urine)</div>
+                <div id="osmo-metric-urine" class="text-base sm:text-lg font-extrabold font-mono text-amber-700 mt-0.5">Medium · Isotonic</div>
+              </div>
+            </div>
+
+            <!-- Interactive SVG Diagram: Hypothalamus -> Pituitary -> Collecting Duct & Blood Capillary -->
+            <div class="rounded-2xl border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-3 sm:p-4 overflow-hidden">
+              <svg id="osmo-svg" viewBox="0 0 800 370" class="w-full h-auto select-none">
+                <defs>
+                  <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb" />
+                  </marker>
+                  <marker id="arrow-purple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed" />
+                  </marker>
+                  <marker id="arrow-teal" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#0d9488" />
+                  </marker>
+                </defs>
+
+                <!-- Section Labels -->
+                <rect x="15" y="12" width="335" height="345" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+                <text x="30" y="36" font-size="13" font-weight="800" fill="#0f172a">1. 腦部感應與內分泌控制 (Brain &amp; Endocrine)</text>
+
+                <rect x="370" y="12" width="415" height="345" rx="16" fill="#f0fdfa" stroke="#99f6e4" stroke-width="1.5" />
+                <text x="385" y="36" font-size="13" font-weight="800" fill="#115e59">2. 腎單位集尿管與微血管 (Nephron &amp; Capillary)</text>
+
+                <!-- Hypothalamus Box -->
+                <rect x="35" y="55" width="295" height="82" rx="14" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2" />
+                <text x="50" y="79" font-size="13" font-weight="800" fill="#4c1d95">Hypothalamus (下丘腦)</text>
+                <text x="50" y="98" font-size="11.5" font-weight="600" fill="#5b21b6">內含 Osmoreceptors (滲透壓感受器)</text>
+                <text id="svg-osmo-sensor-text" x="50" y="120" font-size="11" font-weight="700" fill="#6d28d9">狀態：正常偵測血液水勢</text>
+
+                <!-- Neurosecretory Nerve Pathway -->
+                <path id="svg-osmo-nerve" d="M 182 137 L 182 185" stroke="#7c3aed" stroke-width="4" class="animate-flow" marker-end="url(#arrow-purple)" />
+                <text id="svg-osmo-nerve-label" x="195" y="166" font-size="11" font-weight="700" fill="#6d28d9">神經脈衝頻率：適中</text>
+
+                <!-- Pituitary Gland -->
+                <rect x="55" y="190" width="255" height="65" rx="30" fill="#fae8ff" stroke="#c026d3" stroke-width="2" />
+                <text x="182" y="218" text-anchor="middle" font-size="13" font-weight="800" fill="#86198f">Pituitary Gland (腦下垂體後葉)</text>
+                <text id="svg-osmo-pituitary-text" x="182" y="238" text-anchor="middle" font-size="11" font-weight="700" fill="#a21caf">釋放適量 ADH 入血液</text>
+
+                <!-- Bloodstream Transporting ADH -->
+                <path d="M 182 255 L 182 308 L 415 308" fill="none" stroke="#e11d48" stroke-width="14" stroke-linecap="round" opacity="0.2" />
+                <path id="svg-adh-stream" d="M 182 255 L 182 308 L 415 308" fill="none" stroke="#7c3aed" stroke-width="3" stroke-dasharray="5 7" class="animate-flow" marker-end="url(#arrow-purple)" />
+                <text x="50" y="336" font-size="11.5" font-weight="700" fill="#9f1239">血液循環運送 ADH (Antidiuretic Hormone) 至腎臟</text>
+
+                <!-- Dynamic ADH dots group -->
+                <g id="svg-adh-dots"></g>
+
+                <!-- Collecting Duct Tube -->
+                <text x="465" y="64" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0f766e">Collecting Duct (集尿管)</text>
+                <text x="465" y="80" text-anchor="middle" font-size="10.5" font-weight="600" fill="#115e59">濾液 (Filtrate)</text>
+                <!-- Left wall of collecting duct -->
+                <rect x="415" y="90" width="12" height="190" rx="4" fill="#14b8a6" />
+                <!-- Right wall of collecting duct (segmented for aquaporins!) -->
+                <rect x="505" y="90" width="12" height="28" rx="3" fill="#14b8a6" />
+                <rect x="505" y="138" width="12" height="32" rx="3" fill="#14b8a6" />
+                <rect x="505" y="190" width="12" height="32" rx="3" fill="#14b8a6" />
+                <rect x="505" y="242" width="12" height="38" rx="3" fill="#14b8a6" />
+
+                <!-- Aquaporin Channels (3 gaps at y=118..138, y=170..190, y=222..242) -->
+                <g id="svg-aquaporins">
+                  <rect x="503" y="120" width="16" height="16" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="2" />
+                  <rect x="503" y="172" width="16" height="16" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="2" />
+                  <rect x="503" y="224" width="16" height="16" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="2" />
+                </g>
+                <text id="svg-aquaporin-label" x="565" y="102" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1d4ed8">Aquaporins (水通道蛋白)</text>
+
+                <!-- Osmosis Arrows (Filtrate -> Blood Capillary) -->
+                <g id="svg-osmosis-arrows">
+                  <line x1="485" y1="128" x2="605" y2="128" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow-blue)" />
+                  <line x1="485" y1="180" x2="605" y2="180" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow-blue)" />
+                  <line x1="485" y1="232" x2="605" y2="232" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow-blue)" />
+                </g>
+                <text id="svg-osmosis-label" x="562" y="264" text-anchor="middle" font-size="11" font-weight="800" fill="#1d4ed8">Osmosis (滲透作用)</text>
+
+                <!-- Peritubular Blood Capillary -->
+                <text x="690" y="64" text-anchor="middle" font-size="12.5" font-weight="800" fill="#be123c">Blood Capillary</text>
+                <text x="690" y="80" text-anchor="middle" font-size="10.5" font-weight="600" fill="#9f1239">腎小管周圍微血管</text>
+                <rect x="625" y="90" width="130" height="190" rx="16" fill="#ffe4e6" stroke="#f43f5e" stroke-width="2.5" />
+                <!-- Blood cells & water droplets inside capillary -->
+                <circle cx="665" cy="130" r="10" fill="#e11d48" opacity="0.85" />
+                <circle cx="715" cy="175" r="10" fill="#e11d48" opacity="0.85" />
+                <circle cx="670" cy="225" r="10" fill="#e11d48" opacity="0.85" />
+                <text x="690" y="264" text-anchor="middle" font-size="10.5" font-weight="700" fill="#881337">水分重吸收回血液</text>
+
+                <!-- Urine Collection Beaker at Bottom of Collecting Duct -->
+                <path d="M 435 285 L 435 342 Q 435 348 441 348 L 491 348 Q 497 348 497 342 L 497 285" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+                <rect id="svg-urine-fill" x="437" y="315" width="58" height="31" rx="3" fill="#facc15" opacity="0.85" />
+                <text id="svg-urine-text" x="512" y="328" font-size="11.5" font-weight="800" fill="#334155">尿液：體積適中 · 濃度正常</text>
+                <text id="svg-urine-sub" x="512" y="344" font-size="10.5" font-weight="600" fill="#64748b">血液水勢回復正常水平 (Negative Feedback)</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Causal Logical Chain + Memorization Hack + Misconceptions -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- DSE Level 5 Logical Chain (2 cols) -->
+            <div class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-slate-200/90 space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                <h3 class="text-lg font-extrabold text-slate-900">
+                  DSE Level 5 滿分因果邏輯鏈 (Causal Logical Chain)
+                </h3>
+                <div class="inline-flex rounded-lg bg-slate-100 p-1 text-xs font-bold">
+                  <button id="osmo-chain-tab-low" onclick="switchOsmoChain('low')" class="px-3 py-1.5 rounded-md bg-teal-700 text-white shadow-sm transition">
+                    血液水勢下降 (缺水/排汗)
+                  </button>
+                  <button id="osmo-chain-tab-high" onclick="switchOsmoChain('high')" class="px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition">
+                    血液水勢上升 (大量飲水)
+                  </button>
+                </div>
+              </div>
+
+              <!-- Low Water Potential Chain -->
+              <div id="osmo-chain-low" class="space-y-2.5 text-sm">
+                <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200/80 flex items-start gap-3">
+                  <span class="px-2 py-0.5 rounded bg-amber-600 text-white font-mono text-xs font-bold shrink-0 mt-0.5">1. Stimulus</span>
+                  <div>劇烈運動大量排汗或飲水不足，導致<u class="kw">water potential of the blood decreases</u>（血液水勢下降）。</div>
+                </div>
+                <div class="text-center text-teal-600 font-bold text-xs">↓</div>
+                <div class="p-3 rounded-xl bg-purple-50/70 border border-purple-200/80 flex items-start gap-3">
+                  <span class="px-2 py-0.5 rounded bg-purple-600 text-white font-mono text-xs font-bold shrink-0 mt-0.5">2. Receptor</span>
+                  <div>位於<u class="kw">hypothalamus</u>（下丘腦）的<u class="kw">osmoreceptors</u>（滲透壓感受器）偵測到此變化，並產生更多神經脈衝傳送至<u class="kw">pituitary gland</u>（腦下垂體）。</div>
+                </div>
+                <div class="text-center text-teal-600 font-bold text-xs">↓</div>
+                <div class="p-3 rounded-xl bg-indigo-50/70 border border-indigo-200/80 flex items-start gap-3">
+                  <span class="px-2 py-0.5 rounded bg-indigo-600 text-white font-mono text-xs font-bold shrink-0 mt-0.5">3. Hormone</span>
+                  <div><u class="kw">Pituitary gland</u>（腦下垂體）釋放更多<u class="kw">antidiuretic hormone (ADH)</u>（抗利尿激素）進入血液循環，運往腎臟。</div>
+                </div>
+                <div class="text-center text-teal-600 font-bold text-xs">↓</div>
+                <div class="p-3 rounded-xl bg-teal-50/80 border border-teal-200 flex items-start gap-3">
+                  <span class="px-2 py-0.5 rounded bg-teal-700 text-white font-mono text-xs font-bold shrink-0 mt-0.5">4. Effector</span>
+                  <div>ADH 增加腎單位<u class="kw">collecting duct</u>（集尿管）管壁對水的<u class="kw">permeability</u>（通透性／打開更多水通道蛋白 <u class="kw">aquaporins</u>）。</div>
+                </div>
+                <div class="text-center text-teal-600 font-bold text-xs">↓</div>
+                <div class="p-3 rounded-xl bg-emerald-50/80 border border-emerald-200 flex items-start gap-3">
+                  <span class="px-2 py-0.5 rounded bg-emerald-700 text-white font-mono text-xs font-bold shrink-0 mt-0.5">5. Response</span>
+                  <div>濾液中較高比例的水分藉<u class="kw">osmosis</u>（滲透作用）重吸收回微血管。結果排出<u class="kw">smaller volume of concentrated urine</u>（較少體積的高濃度尿液），使血液水勢回升至正常水平（<u class="kw">negative feedback</u>）。</div>
+                </div>
+              </div>
+
+              <!-- High Water Potential Chain -->
+              <div id="osmo-chain-high" class="hidden space-y-2.5 text-sm">
+                <div class="p-3 rounded-xl bg-blue-50/70 border border-blue-200/80 flex items-start gap-3">
+                  <span class="px-2 py-0.5 rounded bg-blue-600 text-white font-mono text-xs font-bold shrink-0 mt-0.5">1. Stimulus</span>
+                  <div>大量飲水後水分被吸收進入血液，導致<u class="kw">water potential of the blood increases</u>（血液水勢上升）。</div>
+                </div>
+                <div class="text-center text-teal-600 font-bold text-xs">↓</div>
+                <div class="p-3 rounded-xl bg-purple-50/70 border border-purple-200/80 flex items-start gap-3">
+                  <span class="px-2 py-0.5 rounded bg-purple-600 text-white font-mono text-xs font-bold shrink-0 mt-0.5">2. Receptor</span>
+                  <div><u class="kw">Hypothalamus</u> 內的 <u class="kw">osmoreceptors</u> 受較少刺激，傳送較少神經脈衝至 <u class="kw">pituitary gland</u>。</div>
+                </div>
+                <div class="text-center text-teal-600 font-bold text-xs">↓</div>
+                <div class="p-3 rounded-xl bg-indigo-50/70 border border-indigo-200/80 flex items-start gap-3">
+                  <span class="px-2 py-0.5 rounded bg-indigo-600 text-white font-mono text-xs font-bold shrink-0 mt-0.5">3. Hormone</span>
+                  <div><u class="kw">Pituitary gland</u> 釋放較少 <u class="kw">antidiuretic hormone (ADH)</u> 進入血液。</div>
+                </div>
+                <div class="text-center text-teal-600 font-bold text-xs">↓</div>
+                <div class="p-3 rounded-xl bg-teal-50/80 border border-teal-200 flex items-start gap-3">
+                  <span class="px-2 py-0.5 rounded bg-teal-700 text-white font-mono text-xs font-bold shrink-0 mt-0.5">4. Effector</span>
+                  <div><u class="kw">Collecting duct</u> 管壁對水的 <u class="kw">permeability</u> 下降（水通道蛋白關閉）。</div>
+                </div>
+                <div class="text-center text-teal-600 font-bold text-xs">↓</div>
+                <div class="p-3 rounded-xl bg-emerald-50/80 border border-emerald-200 flex items-start gap-3">
+                  <span class="px-2 py-0.5 rounded bg-emerald-700 text-white font-mono text-xs font-bold shrink-0 mt-0.5">5. Response</span>
+                  <div>較少比例的水分藉 <u class="kw">osmosis</u> 重吸收回血液。結果排出 <u class="kw">larger volume of dilute urine</u>（較大體積的稀釋尿液），血液水勢回降至正常水平。</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Memorization Hack Card (1 col) -->
+            <div class="bg-gradient-to-br from-teal-900 to-slate-900 text-white rounded-2xl p-6 shadow-sm flex flex-col justify-between space-y-4">
+              <div>
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-teal-700/70 text-teal-200 text-xs font-bold mb-3">
+                  💡 Bio Sir 記憶秘訣 (Memory Hack)
+                </div>
+                <h4 class="text-lg font-extrabold text-emerald-300">
+                  「ADH = Always Digging Holes」
+                </h4>
+                <p class="text-sm text-teal-100/90 mt-2 leading-relaxed">
+                  拆解英文名字：<strong>Anti-diuretic（抗利尿）</strong>＝「抗拒排尿、留住水分」。
+                </p>
+                <div class="mt-3 p-3.5 rounded-xl bg-white/10 border border-white/15 text-xs space-y-2 leading-relaxed">
+                  <p>🔹 <strong>A</strong>lways <strong>D</strong>igging <strong>H</strong>oles：ADH 的唯一工作就是在<strong>集尿管壁鑽水孔（Aquaporins）</strong>，提升通透性！</p>
+                  <p>🔹 <strong>記住：ADH 自己不會搬運水分子！</strong> 水分子是因為髓質高濃度的水勢梯度，自己透過 <span class="underline text-emerald-300 font-bold">osmosis</span> 滲入微血管的。</p>
+                </div>
+              </div>
+              <div class="p-3 rounded-xl bg-emerald-950/80 border border-emerald-500/30 text-xs text-emerald-200">
+                <strong>考場口訣：</strong>「血水低 → 腦垂多 ADH → 管壁通透高 → 滲透吸多水 → 尿少又濃」。
+              </div>
+            </div>
+          </div>
+
+          <!-- Common Misconceptions Table -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/90">
+            <h3 class="text-lg font-extrabold text-rose-700 flex items-center gap-2 mb-4">
+              <span>⚠️ DSE 考生常犯陷阱 (Common Misconceptions — 0分 Chinglish vs 滿分寫法)</span>
+            </h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                  <tr class="bg-slate-100 text-slate-700 text-xs uppercase">
+                    <th class="p-3 rounded-tl-xl font-bold w-1/4">常考概念</th>
+                    <th class="p-3 font-bold text-rose-700 w-3/8">❌ 0分 / 扣分寫法 (Chinglish)</th>
+                    <th class="p-3 rounded-tr-xl font-bold text-emerald-800 w-3/8">✅ HKEAA 滿分寫法 (Level 5)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                  <tr>
+                    <td class="p-3 font-bold text-slate-800">1. 描述血液水分變化</td>
+                    <td class="p-3 text-rose-700 bg-rose-50/40">"The water content in blood drops" / "Blood becomes thicker"</td>
+                    <td class="p-3 text-slate-800 bg-emerald-50/40">"The <u class="kw">water potential</u> of the blood decreases."（必須用「水勢」一詞！）</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-bold text-slate-800">2. ADH 的作用機制</td>
+                    <td class="p-3 text-rose-700 bg-rose-50/40">"ADH absorbs more water from the nephron into the blood."</td>
+                    <td class="p-3 text-slate-800 bg-emerald-50/40">"ADH increases the <u class="kw">permeability</u> of the wall of the <u class="kw">collecting duct</u> to water, so a greater proportion of water is reabsorbed by <u class="kw">osmosis</u>."</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-bold text-slate-800">3. 製造與釋放器官</td>
+                    <td class="p-3 text-rose-700 bg-rose-50/40">"Osmoreceptors secrete ADH directly."</td>
+                    <td class="p-3 text-slate-800 bg-emerald-50/40">"<u class="kw">Osmoreceptors</u> in the <u class="kw">hypothalamus</u> detect the change and stimulate the <u class="kw">pituitary gland</u> to release more <u class="kw">ADH</u>."</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- =====================================================================
+             MODULE 2: REGULATION OF BODY TEMPERATURE (THERMOREGULATION)
+             ===================================================================== -->
+        <section id="module-2" class="module-section hidden space-y-6">
+          <!-- Module Header Banner -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/90 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <div class="inline-flex items-center gap-2 text-xs font-bold text-teal-700 bg-teal-50 border border-teal-200 px-3 py-1 rounded-full mb-2">
+                Subtopic 5.2 · 體溫調節 (Thermoregulation)
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                體溫調節：皮膚結構、<u class="kw">Vasodilation</u> 與排汗蒸發
+              </h2>
+              <p class="text-sm text-slate-600 mt-1">
+                透過下丘腦<u class="kw">thermoregulatory centre</u>（體溫調節中樞）平衡產熱（Heat gain）與散熱（Heat loss）。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button onclick="setThermoPreset(5)" class="px-3 py-2 rounded-xl text-xs font-bold bg-sky-50 text-sky-800 border border-sky-200 hover:bg-sky-100 transition">
+                ❄️ 寒冷環境 (5°C Cold)
+              </button>
+              <button onclick="setThermoPreset(25)" class="px-3 py-2 rounded-xl text-xs font-bold bg-teal-50 text-teal-800 border border-teal-200 hover:bg-teal-100 transition">
+                🌤️ 正常室溫 (25°C Normal)
+              </button>
+              <button onclick="setThermoPreset(38)" class="px-3 py-2 rounded-xl text-xs font-bold bg-rose-50 text-rose-800 border border-rose-200 hover:bg-rose-100 transition">
+                🔥 炎熱 / 運動 (38°C Hot)
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Simulation Card -->
+          <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200/90 space-y-5">
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                <label for="thermo-slider" class="text-sm font-bold text-slate-800">
+                  外在環境溫度 / 運動狀態 (Ambient Temperature &amp; Metabolic Heat)
+                </label>
+                <span id="thermo-state-badge" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-teal-100 text-teal-900">
+                  25°C · 正常熱平衡狀態 (Thermal Balance)
+                </span>
+              </div>
+              <input id="thermo-slider" type="range" min="5" max="38" value="25" class="bio-slider w-full" oninput="updateThermoregulation(this.value)" />
+              <div class="flex justify-between text-[11px] font-semibold text-slate-500 mt-1.5">
+                <span>← 5°C 寒冷 (減散熱 + 增產熱)</span>
+                <span>25°C 舒適室溫</span>
+                <span>38°C 炎熱 / 劇烈運動 (增散熱) →</span>
+              </div>
+            </div>
+
+            <!-- Live Physiological Readouts -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <div class="text-[11px] font-bold text-slate-500 uppercase">表皮小動脈 (Arterioles)</div>
+                <div id="thermo-metric-vessel" class="text-sm sm:text-base font-extrabold font-mono text-rose-700 mt-0.5">Normal Diameter</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <div class="text-[11px] font-bold text-slate-500 uppercase">汗腺分泌 (Sweat Gland)</div>
+                <div id="thermo-metric-sweat" class="text-sm sm:text-base font-extrabold font-mono text-blue-700 mt-0.5">Low / Basal</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <div class="text-[11px] font-bold text-slate-500 uppercase">豎毛肌 (Hair Erector)</div>
+                <div id="thermo-metric-hair" class="text-sm sm:text-base font-extrabold font-mono text-amber-700 mt-0.5">Relaxed (毛髮平貼)</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <div class="text-[11px] font-bold text-slate-500 uppercase">骨骼肌 (Skeletal Muscle)</div>
+                <div id="thermo-metric-shiver" class="text-sm sm:text-base font-extrabold font-mono text-purple-700 mt-0.5">Normal Tone</div>
+              </div>
+            </div>
+
+            <!-- Interactive SVG Cross-Section of Mammalian Skin -->
+            <div class="rounded-2xl border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-3 sm:p-4 overflow-hidden">
+              <svg id="thermo-svg" viewBox="0 0 800 385" class="w-full h-auto select-none">
+                <!-- Left Panel: Hypothalamus Control -->
+                <rect x="15" y="12" width="230" height="360" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+                <text x="30" y="36" font-size="12.5" font-weight="800" fill="#0f172a">1. 體溫調節中樞控制</text>
+
+                <rect x="28" y="52" width="204" height="90" rx="12" fill="#fee2e2" stroke="#ef4444" stroke-width="2" />
+                <text x="130" y="74" text-anchor="middle" font-size="12" font-weight="800" fill="#991b1b">Hypothalamus</text>
+                <text x="130" y="90" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b91c1c">Thermoregulatory Centre</text>
+                <text id="svg-thermo-brain-status" x="130" y="114" text-anchor="middle" font-size="10.5" font-weight="700" fill="#7f1d1d">感應血液溫度及皮膚感受器</text>
+
+                <!-- Nerve Impulses to Effectors -->
+                <path id="svg-thermo-nerve" d="M 130 142 L 130 225 L 265 225" fill="none" stroke="#7c3aed" stroke-width="3" class="animate-flow" />
+                <text x="35" y="175" font-size="10.5" font-weight="700" fill="#6d28d9">傳出神經脈衝至：</text>
+                <text x="35" y="193" font-size="10.5" font-weight="600" fill="#4c1d95">• 表皮小動脈 (Arterioles)</text>
+                <text x="35" y="209" font-size="10.5" font-weight="600" fill="#4c1d95">• 汗腺 (Sweat glands)</text>
+
+                <!-- Skeletal Muscle Box -->
+                <rect id="svg-shiver-box" x="28" y="255" width="204" height="102" rx="12" fill="#f3e8ff" stroke="#9333ea" stroke-width="2" />
+                <text x="130" y="278" text-anchor="middle" font-size="12" font-weight="800" fill="#581c87">Skeletal Muscles (骨骼肌)</text>
+                <g id="svg-muscle-fibers">
+                  <rect x="48" y="288" width="164" height="12" rx="6" fill="#c084fc" />
+                  <rect x="48" y="305" width="164" height="12" rx="6" fill="#a855f7" />
+                </g>
+                <text id="svg-shiver-text" x="130" y="338" text-anchor="middle" font-size="11" font-weight="700" fill="#6b21a8">正常肌張力 (無顫抖)</text>
+
+                <!-- Right Panel: Mammalian Skin Cross Section -->
+                <rect x="260" y="12" width="525" height="360" rx="16" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5" />
+                <text x="278" y="36" font-size="12.5" font-weight="800" fill="#78350f">2. 哺乳動物皮膚橫切面 (Cross-section of Mammalian Skin)</text>
+
+                <!-- Evaporation / Heat Loss Waves Above Epidermis -->
+                <g id="svg-heat-waves" opacity="0.25">
+                  <path d="M 340 72 Q 333 60 340 48" fill="none" stroke="#ef4444" stroke-width="2.5" class="heat-wave" />
+                  <path d="M 410 72 Q 403 60 410 48" fill="none" stroke="#ef4444" stroke-width="2.5" class="heat-wave" />
+                  <path d="M 480 72 Q 473 60 480 48" fill="none" stroke="#ef4444" stroke-width="2.5" class="heat-wave" />
+                  <text x="415" y="54" text-anchor="middle" font-size="10.5" font-weight="800" fill="#dc2626">輻射、傳導、對流 &amp; 汗液蒸發散熱</text>
+                </g>
+
+                <!-- Epidermis Layer -->
+                <rect x="278" y="82" width="490" height="26" rx="4" fill="#fed7aa" stroke="#fb923c" stroke-width="1.5" />
+                <text x="758" y="99" text-anchor="end" font-size="10.5" font-weight="800" fill="#9a3412">Epidermis (表皮)</text>
+
+                <!-- Sweat Droplets on Skin Surface -->
+                <g id="svg-sweat-drops" opacity="0.2">
+                  <circle cx="345" cy="77" r="4.5" fill="#3b82f6" />
+                  <circle cx="365" cy="76" r="5.5" fill="#2563eb" />
+                  <circle cx="388" cy="77" r="4.5" fill="#3b82f6" />
+                </g>
+
+                <!-- Dermis Layer -->
+                <rect x="278" y="108" width="490" height="190" fill="#ffedd5" stroke="#fdba74" stroke-width="1" />
+                <text x="758" y="126" text-anchor="end" font-size="10.5" font-weight="800" fill="#9a3412">Dermis (真皮)</text>
+
+                <!-- Subcutaneous Fat Layer -->
+                <rect x="278" y="298" width="490" height="44" rx="6" fill="#fef08a" stroke="#eab308" stroke-width="1.5" />
+                <text x="523" y="324" text-anchor="middle" font-size="11" font-weight="800" fill="#854d0e">Subcutaneous Fat (皮下脂肪 — 良好絕緣體 Good Insulator)</text>
+
+                <!-- Sweat Gland & Duct -->
+                <path d="M 355 82 L 355 215 Q 355 245 335 245 Q 318 245 322 225 Q 326 210 344 218 Q 358 225 342 238" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" />
+                <text x="338" y="264" text-anchor="middle" font-size="10.5" font-weight="800" fill="#1d4ed8">Sweat Gland (汗腺)</text>
+
+                <!-- Blood Vessels Network: Superficial Capillaries + Arteriole + Shunt Vessel -->
+                <!-- Fixed Superficial Capillaries near Epidermis -->
+                <path id="svg-capillaries" d="M 425 160 L 425 122 L 545 122 L 545 160" fill="none" stroke="#f43f5e" stroke-width="4.5" stroke-linejoin="round" />
+                <text x="485" y="116" text-anchor="middle" font-size="10" font-weight="800" fill="#be123c">Superficial Capillaries (表皮微血管 - 位置固定!)</text>
+
+                <!-- Shunt Vessel (旁路血管) -->
+                <line id="svg-shunt" x1="425" y1="168" x2="545" y2="168" stroke="#fb7185" stroke-width="5" />
+                <text x="485" y="184" text-anchor="middle" font-size="10" font-weight="700" fill="#9f1239">Shunt Vessel (旁路血管)</text>
+
+                <!-- Main Arteriole Feed & Venule Exit -->
+                <line id="svg-arteriole" x1="425" y1="230" x2="425" y2="160" stroke="#e11d48" stroke-width="7" />
+                <line x1="545" y1="160" x2="545" y2="230" stroke="#2563eb" stroke-width="6" />
+                <text id="svg-arteriole-label" x="425" y="246" text-anchor="middle" font-size="10.5" font-weight="800" fill="#be123c">Arteriole (小動脈)</text>
+
+                <!-- Hair Follicle & Hair Erector Muscle -->
+                <g id="svg-hair-group">
+                  <!-- Hair shaft -->
+                  <line id="svg-hair-shaft" x1="655" y1="195" x2="695" y2="52" stroke="#451a03" stroke-width="4.5" stroke-linecap="round" />
+                  <!-- Follicle bulb -->
+                  <ellipse cx="655" cy="198" rx="8" ry="12" fill="#92400e" />
+                  <!-- Hair erector muscle -->
+                  <line id="svg-erector-muscle" x1="658" y1="175" x2="620" y2="112" stroke="#dc2626" stroke-width="5" stroke-linecap="round" />
+                </g>
+                <text x="645" y="226" text-anchor="middle" font-size="10" font-weight="800" fill="#78350f">Hair Erector Muscle</text>
+                <text x="645" y="239" text-anchor="middle" font-size="9.5" font-weight="700" fill="#92400e">(豎毛肌)</text>
+
+                <!-- Critical DSE Warning Note inside SVG -->
+                <rect x="290" y="347" width="465" height="20" rx="5" fill="#ffe4e6" />
+                <text x="522" y="361" text-anchor="middle" font-size="10" font-weight="800" fill="#be123c">
+                  ⚠️ DSE 必記：微血管 (Capillaries) 沒有平滑肌且不會上下移動！只有小動脈 (Arterioles) 舒張或收縮！
+                </text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Causal Logical Chain + Memorization Hack + Misconceptions -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-slate-200/90 space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                <h3 class="text-lg font-extrabold text-slate-900">
+                  DSE Level 5 滿分因果邏輯鏈 (Causal Logical Chain)
+                </h3>
+                <div class="inline-flex rounded-lg bg-slate-100 p-1 text-xs font-bold">
+                  <button id="thermo-chain-tab-cold" onclick="switchThermoChain('cold')" class="px-3 py-1.5 rounded-md bg-sky-700 text-white shadow-sm transition">
+                    寒冷環境 (Cold Environment)
+                  </button>
+                  <button id="thermo-chain-tab-hot" onclick="switchThermoChain('hot')" class="px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition">
+                    炎熱環境 (Hot Environment)
+                  </button>
+                </div>
+              </div>
+
+              <!-- Cold Chain -->
+              <div id="thermo-chain-cold" class="space-y-2.5 text-sm">
+                <div class="p-3 rounded-xl bg-sky-50 border border-sky-200">
+                  <span class="font-bold text-sky-900">1. Stimulus &amp; Receptor：</span>
+                  <u class="kw">Thermoreceptors</u>（溫度感受器）在皮膚偵測到外在溫度下降，傳送神經脈衝至下丘腦的<u class="kw">thermoregulatory centre</u>（體溫調節中樞）。
+                </div>
+                <div class="p-3 rounded-xl bg-teal-50 border border-teal-200">
+                  <span class="font-bold text-teal-900">2. 減少散熱 (Reduce Heat Loss)：</span>
+                  <ul class="list-disc pl-5 mt-1 space-y-1">
+                    <li>表皮<u class="kw">arterioles</u>（小動脈）發生<u class="kw">vasoconstriction</u>（血管收縮），同時<u class="kw">shunt vessel</u>（旁路血管）舒張，減少流經表皮微血管的血流量，減低藉<u class="kw">conduction, convection and radiation</u>（傳導、對流及輻射）散失的熱能。</li>
+                    <li><u class="kw">Sweat glands</u>（汗腺）減少分泌汗液，減低汗液蒸發吸收的<u class="kw">latent heat of vaporization</u>（汽化潛熱）。</li>
+                    <li><u class="kw">Hair erector muscles</u>（豎毛肌）收縮使毛髮豎起，困住較厚一層靜止空氣（良好<u class="kw">insulator</u> 絕緣體），減少熱散失。</li>
+                  </ul>
+                </div>
+                <div class="p-3 rounded-xl bg-purple-50 border border-purple-200">
+                  <span class="font-bold text-purple-900">3. 增加產熱 (Increase Heat Gain)：</span>
+                  <u class="kw">Skeletal muscles</u>（骨骼肌）進行不自主快速收縮（<u class="kw">shivering</u> 顫抖），加速<u class="kw">respiration</u>（呼吸作用）釋放更多熱能。
+                </div>
+              </div>
+
+              <!-- Hot Chain -->
+              <div id="thermo-chain-hot" class="hidden space-y-2.5 text-sm">
+                <div class="p-3 rounded-xl bg-rose-50 border border-rose-200">
+                  <span class="font-bold text-rose-900">1. Stimulus &amp; Receptor：</span>
+                  皮膚<u class="kw">thermoreceptors</u>及下丘腦<u class="kw">thermoregulatory centre</u>偵測到血液溫度上升。
+                </div>
+                <div class="p-3 rounded-xl bg-teal-50 border border-teal-200">
+                  <span class="font-bold text-teal-900">2. 增加散熱 (Increase Heat Loss)：</span>
+                  <ul class="list-disc pl-5 mt-1 space-y-1">
+                    <li>表皮<u class="kw">arterioles</u>發生<u class="kw">vasodilation</u>（血管舒張），增加流經表皮微血管的血流量，使皮膚與外界溫差增大，加速藉<u class="kw">conduction, convection and radiation</u>散熱。</li>
+                    <li><u class="kw">Sweat glands</u>增加分泌汗液；汗液中的水分蒸發（<u class="kw">evaporation of sweat</u>）時從皮膚吸收大量<u class="kw">latent heat of vaporization</u>（汽化潛熱），降低體溫。</li>
+                    <li><u class="kw">Hair erector muscles</u>放鬆，毛髮平貼皮膚表面，減少困住空氣。</li>
+                  </ul>
+                </div>
+                <div class="p-3 rounded-xl bg-amber-50 border border-amber-200">
+                  <span class="font-bold text-amber-900">3. 減少產熱 (Reduce Heat Gain)：</span>
+                  減低代謝率及減少肌肉活動（無顫抖）。
+                </div>
+              </div>
+            </div>
+
+            <!-- Memorization Hack Card -->
+            <div class="bg-gradient-to-br from-teal-900 to-slate-900 text-white rounded-2xl p-6 shadow-sm flex flex-col justify-between space-y-4">
+              <div>
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-teal-700/70 text-teal-200 text-xs font-bold mb-3">
+                  💡 Bio Sir 記憶秘訣 (Memory Hack)
+                </div>
+                <h4 class="text-lg font-extrabold text-emerald-300">
+                  散熱兩大武器：乾散熱 vs 濕散熱
+                </h4>
+                <div class="mt-3 p-3.5 rounded-xl bg-white/10 border border-white/15 text-xs space-y-2 leading-relaxed">
+                  <p>🔥 <strong>乾散熱 (Vasodilation)</strong>：靠血液把熱帶到表皮，透過<strong>傳導、對流、輻射</strong>散熱（前提：環境溫度必須低於體溫！）。</p>
+                  <p>💦 <strong>濕散熱 (Sweating)</strong>：當環境溫度高於 37°C 時，乾散熱失效，<strong>唯有靠汗液蒸發吸收 Latent heat of vaporization</strong> 才能降溫！</p>
+                </div>
+              </div>
+              <div class="p-3 rounded-xl bg-emerald-950/80 border border-emerald-500/30 text-xs text-emerald-200">
+                <strong>拼寫提醒：</strong>是 <code class="text-white font-bold">vasodilation</code>（沒有 "ta"！不要錯寫成 vasodilatation）。
+              </div>
+            </div>
+          </div>
+
+          <!-- Common Misconceptions Table -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/90">
+            <h3 class="text-lg font-extrabold text-rose-700 mb-4">
+              ⚠️ DSE 考生常犯陷阱 (Common Misconceptions)
+            </h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                  <tr class="bg-slate-100 text-slate-700 text-xs uppercase">
+                    <th class="p-3 rounded-tl-xl font-bold w-1/4">常考概念</th>
+                    <th class="p-3 font-bold text-rose-700 w-3/8">❌ 0分 / 扣分寫法</th>
+                    <th class="p-3 rounded-tr-xl font-bold text-emerald-800 w-3/8">✅ HKEAA 滿分寫法 (Level 5)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                  <tr>
+                    <td class="p-3 font-bold text-slate-800">1. 哪條血管會收縮/舒張？</td>
+                    <td class="p-3 text-rose-700 bg-rose-50/40">"Capillaries dilate and move closer to the skin surface."</td>
+                    <td class="p-3 text-slate-800 bg-emerald-50/40">"<u class="kw">Arterioles</u> near the skin surface undergo <u class="kw">vasodilation</u>, increasing blood flow to the superficial <u class="kw">capillaries</u>."</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-bold text-slate-800">2. 排汗如何降溫？</td>
+                    <td class="p-3 text-rose-700 bg-rose-50/40">"Cold sweat cools down the body" / "Sweat takes away heat."</td>
+                    <td class="p-3 text-slate-800 bg-emerald-50/40">"The <u class="kw">evaporation of sweat</u> absorbs <u class="kw">latent heat of vaporization</u> from the skin."</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-bold text-slate-800">3. 豎毛肌的作用原理</td>
+                    <td class="p-3 text-rose-700 bg-rose-50/40">"Hair stands up to produce heat."</td>
+                    <td class="p-3 text-slate-800 bg-emerald-50/40">"<u class="kw">Hair erector muscles</u> contract to pull hairs upright, trapping a thicker layer of still air which is a good <u class="kw">insulator</u>."</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- =====================================================================
+             MODULE 3: REGULATION OF GAS CONTENT IN BLOOD & EXERCISE
+             ===================================================================== -->
+        <section id="module-3" class="module-section hidden space-y-6">
+          <!-- Module Header Banner -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/90 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <div class="inline-flex items-center gap-2 text-xs font-bold text-teal-700 bg-teal-50 border border-teal-200 px-3 py-1 rounded-full mb-2">
+                Subtopic 5.3 · 血液氣體成分調節與運動生理
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                運動時的呼吸與心輸出量 (<u class="kw">CO = HR × SV</u>) 調節
+              </h2>
+              <p class="text-sm text-slate-600 mt-1">
+                血液 <u class="kw">carbon dioxide concentration</u> 上升引致 pH 下降，經化學感受器 (<u class="kw">chemoreceptors</u>) 協調呼吸與心搏。
+              </p>
+            </div>
+            <!-- Intensity Mode Buttons -->
+            <div class="flex flex-wrap gap-2">
+              <button onclick="setExerciseMode('rest')" id="ex-btn-rest" class="ex-mode-btn px-3 py-2 rounded-xl text-xs font-bold bg-teal-700 text-white shadow-sm transition">
+                🧘 靜止 (Rest)
+              </button>
+              <button onclick="setExerciseMode('jog')" id="ex-btn-jog" class="ex-mode-btn px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+                🏃 緩步跑 (Jogging)
+              </button>
+              <button onclick="setExerciseMode('sprint')" id="ex-btn-sprint" class="ex-mode-btn px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+                ⚡ 劇烈衝刺 (Sprinting)
+              </button>
+              <button onclick="setExerciseMode('recovery')" id="ex-btn-recovery" class="ex-mode-btn px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+                😮‍💨 運動後恢復 (Oxygen Debt)
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Simulation Card -->
+          <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200/90 space-y-5">
+            <!-- Live Telemetry & Cardiac Output Equation -->
+            <div class="grid grid-cols-2 lg:grid-cols-5 gap-3">
+              <div class="p-3.5 rounded-xl bg-rose-50/70 border border-rose-200">
+                <div class="text-[11px] font-bold text-rose-700 uppercase">血液 CO₂ &amp; pH</div>
+                <div id="ex-metric-ph" class="text-base font-extrabold font-mono text-rose-900 mt-0.5">pH 7.40 (正常)</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-sky-50/70 border border-sky-200">
+                <div class="text-[11px] font-bold text-sky-700 uppercase">呼吸速率 × 深度</div>
+                <div id="ex-metric-resp" class="text-base font-extrabold font-mono text-sky-900 mt-0.5">12 /min · 0.5 L</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-purple-50/70 border border-purple-200">
+                <div class="text-[11px] font-bold text-purple-700 uppercase">心率 (Heart Rate)</div>
+                <div id="ex-metric-hr" class="text-base font-extrabold font-mono text-purple-900 mt-0.5">70 bpm</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-indigo-50/70 border border-indigo-200">
+                <div class="text-[11px] font-bold text-indigo-700 uppercase">每搏輸出量 (SV)</div>
+                <div id="ex-metric-sv" class="text-base font-extrabold font-mono text-indigo-900 mt-0.5">70 mL</div>
+              </div>
+              <div class="col-span-2 lg:col-span-1 p-3.5 rounded-xl bg-teal-900 text-white shadow-sm">
+                <div class="text-[11px] font-bold text-teal-300 uppercase">心輸出量 (CO = HR×SV)</div>
+                <div id="ex-metric-co" class="text-base sm:text-lg font-extrabold font-mono text-emerald-300 mt-0.5">4.90 L/min</div>
+              </div>
+            </div>
+
+            <!-- Dual SVG Panel: Neural Pathway + Oxygen Debt Lactic Acid Graph -->
+            <div class="grid grid-cols-1 xl:grid-cols-12 gap-4">
+              <!-- Left SVG: Neural & Hormonal Integration (7 cols) -->
+              <div class="xl:col-span-7 rounded-2xl border border-slate-200 bg-slate-50/70 p-3">
+                <svg viewBox="0 0 540 350" class="w-full h-auto select-none">
+                  <text x="14" y="24" font-size="12.5" font-weight="800" fill="#0f172a">雙重神經協調路徑 (Dual Neural Control in Medulla)</text>
+
+                  <!-- Skeletal Muscle CO2 Production -->
+                  <rect x="14" y="42" width="160" height="82" rx="12" fill="#fee2e2" stroke="#ef4444" stroke-width="2" />
+                  <text x="94" y="64" text-anchor="middle" font-size="11.5" font-weight="800" fill="#991b1b">Skeletal Muscles</text>
+                  <text id="svg-ex-muscle" x="94" y="83" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b91c1c">基礎呼吸作用 (低 CO₂)</text>
+                  <text id="svg-ex-acid" x="94" y="103" text-anchor="middle" font-size="10" font-weight="700" fill="#7f1d1d">血液 pH 維持 7.40</text>
+
+                  <!-- Chemoreceptors -->
+                  <rect x="14" y="160" width="160" height="92" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" />
+                  <text x="94" y="182" text-anchor="middle" font-size="11.5" font-weight="800" fill="#92400e">Chemoreceptors</text>
+                  <text x="94" y="199" text-anchor="middle" font-size="10" font-weight="600" fill="#78350f">• Carotid &amp; Aortic bodies</text>
+                  <text x="94" y="214" text-anchor="middle" font-size="10" font-weight="600" fill="#78350f">• Medulla oblongata</text>
+                  <text id="svg-ex-chemo" x="94" y="236" text-anchor="middle" font-size="10" font-weight="800" fill="#b45309">脈衝頻率：基礎水平</text>
+
+                  <!-- Arrow Muscle -> Chemoreceptor -->
+                  <line x1="94" y1="124" x2="94" y2="156" stroke="#ef4444" stroke-width="3" class="animate-flow" />
+
+                  <!-- Medulla Oblongata Centres -->
+                  <rect x="205" y="42" width="145" height="110" rx="14" fill="#e0e7ff" stroke="#4f46e5" stroke-width="2" />
+                  <text x="277" y="66" text-anchor="middle" font-size="11.5" font-weight="800" fill="#312e81">Respiratory Centre</text>
+                  <text x="277" y="82" text-anchor="middle" font-size="10" font-weight="600" fill="#3730a3">(延髓呼吸中樞)</text>
+                  <text id="svg-ex-resp-centre" x="277" y="112" text-anchor="middle" font-size="10.5" font-weight="700" fill="#4338ca">正常節律傳送脈衝</text>
+
+                  <rect x="205" y="185" width="145" height="125" rx="14" fill="#fae8ff" stroke="#a21caf" stroke-width="2" />
+                  <text x="277" y="208" text-anchor="middle" font-size="11" font-weight="800" fill="#701a75">Cardiovascular Centre</text>
+                  <text x="277" y="224" text-anchor="middle" font-size="10" font-weight="600" fill="#86198f">(延髓心血管中樞)</text>
+                  <text id="svg-ex-symp" x="277" y="252" text-anchor="middle" font-size="10" font-weight="700" fill="#be123c">Sympathetic nerve: 適中</text>
+                  <text id="svg-ex-vagus" x="277" y="272" text-anchor="middle" font-size="10" font-weight="700" fill="#0369a1">Vagus nerve: 適中抑制</text>
+
+                  <!-- Chemoreceptor -> Medulla arrows -->
+                  <path d="M 174 190 L 202 110" fill="none" stroke="#f59e0b" stroke-width="2.5" class="animate-flow" />
+                  <path d="M 174 215 L 202 245" fill="none" stroke="#f59e0b" stroke-width="2.5" class="animate-flow" />
+
+                  <!-- Effectors on Right -->
+                  <!-- Lungs / Diaphragm -->
+                  <rect x="380" y="42" width="146" height="110" rx="14" fill="#e0f2fe" stroke="#0284c7" stroke-width="2" />
+                  <text x="453" y="65" text-anchor="middle" font-size="11" font-weight="800" fill="#0c4a6e">Intercostal Muscles</text>
+                  <text x="453" y="80" text-anchor="middle" font-size="11" font-weight="800" fill="#0c4a6e">&amp; Diaphragm</text>
+                  <text id="svg-ex-lung-action" x="453" y="108" text-anchor="middle" font-size="10" font-weight="700" fill="#0369a1">正常收縮頻率與幅度</text>
+                  <text x="453" y="132" text-anchor="middle" font-size="9.5" font-weight="600" fill="#075985">加速排出 CO₂ 及吸入 O₂</text>
+
+                  <!-- Heart & SA Node -->
+                  <rect x="380" y="185" width="146" height="125" rx="14" fill="#ffe4e6" stroke="#e11d48" stroke-width="2" />
+                  <text x="453" y="208" text-anchor="middle" font-size="11" font-weight="800" fill="#881337">Heart &amp; SA Node</text>
+                  <text x="453" y="224" text-anchor="middle" font-size="10" font-weight="700" fill="#be123c">(竇房結 / 起搏點)</text>
+                  <text id="svg-ex-heart-action" x="453" y="252" text-anchor="middle" font-size="10" font-weight="700" fill="#9f1239">↑ HR &amp; ↑ SV = ↑ CO</text>
+                  <text x="453" y="274" text-anchor="middle" font-size="9.5" font-weight="600" fill="#881337">加速運送 O₂ 至骨骼肌</text>
+
+                  <!-- Medulla -> Effector Arrows -->
+                  <line x1="350" y1="96" x2="377" y2="96" stroke="#0284c7" stroke-width="3" class="animate-flow" />
+                  <line x1="350" y1="248" x2="377" y2="248" stroke="#e11d48" stroke-width="3" class="animate-flow" />
+
+                  <text x="270" y="336" text-anchor="middle" font-size="10.5" font-weight="700" fill="#475569">
+                    註：腎上腺素 (Adrenaline) 亦於劇烈運動時協同刺激 SA node 提升心率與心肌收縮力
+                  </text>
+                </svg>
+              </div>
+
+              <!-- Right SVG: Oxygen Debt & Lactic Acid Graph (5 cols) -->
+              <div class="xl:col-span-5 rounded-2xl border border-slate-200 bg-white p-3 flex flex-col justify-between">
+                <div>
+                  <div class="text-xs font-extrabold text-slate-900 mb-1">
+                    氧債與乳酸清除曲線 (Oxygen Debt &amp; Lactic Acid Removal)
+                  </div>
+                  <p class="text-[11px] text-slate-500 mb-2">
+                    劇烈運動初期需氧量超過攝氧量，進行無氧呼吸產生<u class="kw">lactic acid</u>，運動後仍需維持高呼吸與心率以清還<u class="kw">oxygen debt</u>。
+                  </p>
+                </div>
+
+                <svg viewBox="0 0 380 245" class="w-full h-auto select-none">
+                  <!-- Axes -->
+                  <line x1="45" y1="205" x2="355" y2="205" stroke="#64748b" stroke-width="2" />
+                  <line x1="45" y1="25" x2="45" y2="205" stroke="#64748b" stroke-width="2" />
+                  <text x="200" y="232" text-anchor="middle" font-size="10.5" font-weight="700" fill="#334155">時間 Time (Rest → Exercise → Recovery)</text>
+                  <text x="16" y="115" text-anchor="middle" font-size="10.5" font-weight="700" fill="#334155" transform="rotate(-90 16 115)">O₂ 消耗速率</text>
+
+                  <!-- Phase Dividers -->
+                  <line x1="90" y1="30" x2="90" y2="205" stroke="#cbd5e1" stroke-dasharray="4 4" />
+                  <line x1="220" y1="30" x2="220" y2="205" stroke="#cbd5e1" stroke-dasharray="4 4" />
+                  <text x="67" y="42" text-anchor="middle" font-size="9.5" font-weight="700" fill="#64748b">靜止</text>
+                  <text x="155" y="42" text-anchor="middle" font-size="9.5" font-weight="800" fill="#e11d48">劇烈運動期</text>
+                  <text x="285" y="42" text-anchor="middle" font-size="9.5" font-weight="800" fill="#0d9488">恢復期 (Recovery)</text>
+
+                  <!-- Shaded Oxygen Deficit Area -->
+                  <path d="M 90 175 L 90 65 L 220 65 Q 150 75 90 175 Z" fill="#fecdd3" opacity="0.7" />
+                  <text x="125" y="95" font-size="9" font-weight="800" fill="#9f1239">Oxygen Deficit</text>
+                  <text x="125" y="106" font-size="8.5" font-weight="700" fill="#be123c">(缺氧/累積乳酸)</text>
+
+                  <!-- Shaded Oxygen Debt Repaid Area -->
+                  <path d="M 220 65 Q 250 165 340 175 L 220 175 Z" fill="#ccfbf1" opacity="0.85" />
+                  <text x="255" y="148" font-size="9" font-weight="800" fill="#115e59">Oxygen Debt</text>
+                  <text x="255" y="160" font-size="8.5" font-weight="700" fill="#0f766e">(清還氧債)</text>
+
+                  <!-- Oxygen Demand Line (dashed red) -->
+                  <path d="M 45 175 L 90 175 L 90 65 L 220 65 L 220 175 L 350 175" fill="none" stroke="#e11d48" stroke-width="2" stroke-dasharray="5 3" />
+
+                  <!-- Actual Oxygen Consumption Curve (solid teal) -->
+                  <path d="M 45 175 L 90 175 Q 130 70 220 65 Q 250 165 340 175 L 350 175" fill="none" stroke="#0f766e" stroke-width="3" />
+
+                  <!-- Active Phase Highlight Marker -->
+                  <circle id="svg-ex-graph-dot" cx="67" cy="175" r="6" fill="#0f766e" stroke="#ffffff" stroke-width="2" />
+                </svg>
+
+                <div class="p-2.5 rounded-xl bg-teal-50 border border-teal-200 text-[11.5px] text-teal-950 leading-snug">
+                  <strong>肝臟清還氧債去向：</strong>運動後額外吸入的氧氣運往肝臟，氧化小部分<u class="kw">lactic acid</u>釋放能量，將大部分乳酸轉化回<u class="kw">glycogen</u>（糖原）儲存。
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Causal Logical Chain + Memorization Hack + Misconceptions -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-slate-200/90 space-y-3 text-sm">
+              <h3 class="text-lg font-extrabold text-slate-900 border-b border-slate-100 pb-2">
+                DSE Level 5 滿分因果邏輯鏈 (Exercise Regulation Chain)
+              </h3>
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <strong>1. Stimulus：</strong>劇烈運動時骨骼肌進行高強度<u class="kw">aerobic respiration</u>，產生大量<u class="kw">carbon dioxide</u>溶於血漿形成碳酸，導致血液<u class="kw">pH decreases</u>（變酸）。
+              </div>
+              <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200">
+                <strong>2. Receptor &amp; Coordination Centre：</strong>位於<u class="kw">carotid bodies</u>（頸動脈體）、<u class="kw">aortic bodies</u>（主動脈體）及<u class="kw">medulla oblongata</u>（延髓）的<u class="kw">chemoreceptors</u>（化學感受器）偵測到 CO₂ 上升／pH 下降，傳送更多神經脈衝至延髓的<u class="kw">respiratory centre</u>及<u class="kw">cardiovascular centre</u>。
+              </div>
+              <div class="p-3 rounded-xl bg-sky-50/70 border border-sky-200">
+                <strong>3. Respiratory Effector：</strong>呼吸中樞傳送更多神經脈衝至<u class="kw">intercostal muscles</u>（肋間肌）及<u class="kw">diaphragm</u>（橫膈膜），使其收縮更快更深 → <u class="kw">rate and depth of breathing increase</u>（呼吸速率及深度增加），加速排出 CO₂ 及吸入 O₂。
+              </div>
+              <div class="p-3 rounded-xl bg-rose-50/70 border border-rose-200">
+                <strong>4. Cardiovascular Effector：</strong>心血管中樞增加經<u class="kw">sympathetic nerve</u>（交感神經）傳送至<u class="kw">sinoatrial (SA) node</u>（竇房結）的脈衝（並減少<u class="kw">vagus nerve</u> 迷走神經的抑制脈衝），使<u class="kw">heart rate</u>（心率）及<u class="kw">stroke volume</u>（每搏輸出量）上升，大幅提升<u class="kw">cardiac output</u>（心輸出量），加速運送氧氣及葡萄糖至骨骼肌並帶走 CO₂ 與乳酸。
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-teal-900 to-slate-900 text-white rounded-2xl p-6 shadow-sm flex flex-col justify-between space-y-4">
+              <div>
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-teal-700/70 text-teal-200 text-xs font-bold mb-3">
+                  💡 Bio Sir 記憶秘訣 (Memory Hack)
+                </div>
+                <h4 class="text-lg font-extrabold text-emerald-300">
+                  「C 控制 C」法則 &amp; CO 公式
+                </h4>
+                <div class="mt-3 p-3.5 rounded-xl bg-white/10 border border-white/15 text-xs space-y-2.5 leading-relaxed">
+                  <p>🔹 <strong>C</strong>hemoreceptors 主要感應 <strong>C</strong>O₂（不是 O₂！）。血液中 O₂ 濃度即使輕微下降也不會直接刺激延髓，唯有高 CO₂ / 低 pH 才是啟動呼吸加速的主因。</p>
+                  <p>🔹 <strong>心臟加速雙神經：</strong><br />• <strong>S</strong>ympathetic = <strong>S</strong>peed up（交感神經加速）<br />• <strong>V</strong>agus = <strong>V</strong>ery slow（迷走神經減慢）</p>
+                </div>
+              </div>
+              <div class="p-3 rounded-xl bg-emerald-950/80 border border-emerald-500/30 text-xs font-mono text-emerald-200">
+                Cardiac Output (CO) = Heart Rate (HR) × Stroke Volume (SV)
+              </div>
+            </div>
+          </div>
+
+          <!-- Common Misconceptions Table -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/90">
+            <h3 class="text-lg font-extrabold text-rose-700 mb-4">
+              ⚠️ DSE 考生常犯陷阱 (Common Misconceptions)
+            </h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                  <tr class="bg-slate-100 text-slate-700 text-xs uppercase">
+                    <th class="p-3 rounded-tl-xl font-bold w-1/4">常考概念</th>
+                    <th class="p-3 font-bold text-rose-700 w-3/8">❌ 0分 / 扣分寫法</th>
+                    <th class="p-3 rounded-tr-xl font-bold text-emerald-800 w-3/8">✅ HKEAA 滿分寫法 (Level 5)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                  <tr>
+                    <td class="p-3 font-bold text-slate-800">1. 刺激呼吸加速的首要因素</td>
+                    <td class="p-3 text-rose-700 bg-rose-50/40">"Low oxygen level in blood stimulates the brain to breathe faster."</td>
+                    <td class="p-3 text-slate-800 bg-emerald-50/40">"High <u class="kw">carbon dioxide concentration</u> / lower <u class="kw">pH</u> in the blood is detected by <u class="kw">chemoreceptors</u>."</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-bold text-slate-800">2. 延髓如何控制心跳？</td>
+                    <td class="p-3 text-rose-700 bg-rose-50/40">"Medulla oblongata sends nerve impulses to cardiac muscles directly."</td>
+                    <td class="p-3 text-slate-800 bg-emerald-50/40">"Cardiovascular centre sends more impulses via the <u class="kw">sympathetic nerve</u> to the <u class="kw">sinoatrial (SA) node</u>, increasing the rate of electrical impulses generated."</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-bold text-slate-800">3. 乳酸的最終去向</td>
+                    <td class="p-3 text-rose-700 bg-rose-50/40">"All lactic acid is broken down into CO₂ and water in muscles."</td>
+                    <td class="p-3 text-slate-800 bg-emerald-50/40">"Lactic acid is transported to the <u class="kw">liver</u>, where most is converted into <u class="kw">glycogen</u> using energy from oxidizing a small portion of lactic acid."</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- =====================================================================
+             MODULE 4: HORMONAL CONTROL OF REPRODUCTIVE CYCLE
+             ===================================================================== -->
+        <section id="module-4" class="module-section hidden space-y-6">
+          <!-- Module Header Banner -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/90 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <div class="inline-flex items-center gap-2 text-xs font-bold text-teal-700 bg-teal-50 border border-teal-200 px-3 py-1 rounded-full mb-2">
+                Subtopic 5.4 · 生殖週期的激素控制 (Menstrual Cycle)
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                28天月經週期：<u class="kw">FSH</u>、<u class="kw">LH</u>、<u class="kw">Oestrogen</u> 與 <u class="kw">Progesterone</u>
+              </h2>
+              <p class="text-sm text-slate-600 mt-1">
+                拖動日期時間軸觀察垂體激素與卵巢激素的<u class="kw">negative feedback</u>及排卵前<u class="kw">positive feedback</u>。
+              </p>
+            </div>
+            <!-- Clinical Mode Selector -->
+            <div class="flex flex-wrap gap-2">
+              <button onclick="setCycleMode('normal')" id="cyc-btn-normal" class="cyc-mode-btn px-3 py-2 rounded-xl text-xs font-bold bg-teal-700 text-white shadow-sm transition">
+                🔄 正常週期 (Normal)
+              </button>
+              <button onclick="setCycleMode('pill')" id="cyc-btn-pill" class="cyc-mode-btn px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+                💊 口服避孕藥 (Contraceptive Pills)
+              </button>
+              <button onclick="setCycleMode('ivf')" id="cyc-btn-ivf" class="cyc-mode-btn px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+                🧬 不育治療 (Infertility / IVF)
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Scrubber & Synchronized Charts -->
+          <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200/90 space-y-5">
+            <!-- Day Scrubber Controls -->
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80 space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex items-center gap-3">
+                  <button id="cyc-play-btn" onclick="toggleCyclePlay()" class="px-3.5 py-1.5 rounded-lg bg-teal-700 text-white text-xs font-bold hover:bg-teal-800 transition shadow-sm">
+                    ▶ 自動播放週期
+                  </button>
+                  <span id="cyc-day-badge" class="text-base sm:text-lg font-extrabold font-mono text-teal-900">
+                    Day 14 · 排卵日 (Ovulation — LH Surge!)
+                  </span>
+                </div>
+                <div class="flex flex-wrap gap-1.5">
+                  <button onclick="setCycleDay(2)" class="px-2.5 py-1 rounded-md bg-rose-100 text-rose-800 text-xs font-bold hover:bg-rose-200">Day 2 經期</button>
+                  <button onclick="setCycleDay(9)" class="px-2.5 py-1 rounded-md bg-amber-100 text-amber-800 text-xs font-bold hover:bg-amber-200">Day 9 濾泡發育</button>
+                  <button onclick="setCycleDay(14)" class="px-2.5 py-1 rounded-md bg-purple-100 text-purple-800 text-xs font-bold hover:bg-purple-200">Day 14 排卵</button>
+                  <button onclick="setCycleDay(21)" class="px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-800 text-xs font-bold hover:bg-emerald-200">Day 21 黃體期</button>
+                </div>
+              </div>
+
+              <input id="cyc-slider" type="range" min="1" max="28" value="14" class="bio-slider w-full" oninput="updateCycleDay(this.value)" />
+              <div class="flex justify-between text-[11px] font-semibold text-slate-500">
+                <span>Day 1 (Menstruation 經期開始)</span>
+                <span>Day 14 (Ovulation 排卵)</span>
+                <span>Day 28 (End of Cycle 週期結束)</span>
+              </div>
+            </div>
+
+            <!-- Clinical Mode Explanation Banner -->
+            <div id="cyc-mode-banner" class="p-3.5 rounded-xl bg-teal-50 border border-teal-200 text-xs sm:text-sm text-teal-950 font-medium">
+              <strong>正常 28 天週期：</strong>第 12–13 天高濃度 <u class="kw">oestrogen</u> 對腦下垂體產生 <u class="kw">positive feedback</u>，觸發第 14 天的 <u class="kw">LH surge</u> 引致 <u class="kw">ovulation</u>。
+            </div>
+
+            <!-- Synchronized SVG Visualization -->
+            <div class="rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 overflow-hidden">
+              <svg id="cyc-svg" viewBox="0 0 800 450" class="w-full h-auto select-none">
+                <!-- Panel 1: Pituitary Hormones (FSH & LH) -->
+                <rect x="45" y="15" width="730" height="115" rx="10" fill="#f8fafc" stroke="#cbd5e1" />
+                <text x="58" y="34" font-size="11.5" font-weight="800" fill="#312e81">1. 腦下垂體激素 (Pituitary Hormones): FSH &amp; LH</text>
+                <!-- Legend -->
+                <line x1="560" y1="30" x2="585" y2="30" stroke="#7c3aed" stroke-width="3" />
+                <text x="590" y="34" font-size="11" font-weight="800" fill="#7c3aed">LH (黃體生成素)</text>
+                <line x1="685" y1="30" x2="710" y2="30" stroke="#0284c7" stroke-width="3" />
+                <text x="715" y="34" font-size="11" font-weight="800" fill="#0284c7">FSH</text>
+
+                <!-- Pituitary Hormone Paths (dynamically updated by JS for Normal / Pill / IVF) -->
+                <path id="svg-lh-curve" d="" fill="none" stroke="#7c3aed" stroke-width="3" />
+                <path id="svg-fsh-curve" d="" fill="none" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="6 3" />
+
+                <!-- Panel 2: Ovarian Hormones (Oestrogen & Progesterone) -->
+                <rect x="45" y="142" width="730" height="115" rx="10" fill="#fffbeb" stroke="#fde68a" />
+                <text x="58" y="161" font-size="11.5" font-weight="800" fill="#92400e">2. 卵巢激素 (Ovarian Hormones): Oestrogen &amp; Progesterone</text>
+                <line x1="520" y1="157" x2="545" y2="157" stroke="#e11d48" stroke-width="3" />
+                <text x="550" y="161" font-size="11" font-weight="800" fill="#e11d48">Oestrogen (雌激素)</text>
+                <line x1="660" y1="157" x2="685" y2="157" stroke="#059669" stroke-width="3" />
+                <text x="690" y="161" font-size="11" font-weight="800" fill="#059669">Progesterone</text>
+
+                <path id="svg-oest-curve" d="" fill="none" stroke="#e11d48" stroke-width="3" />
+                <path id="svg-prog-curve" d="" fill="none" stroke="#059669" stroke-width="3" />
+
+                <!-- Panel 3: Ovarian Follicle Stage & Uterine Lining (Endometrium) -->
+                <rect x="45" y="270" width="730" height="145" rx="10" fill="#fff1f2" stroke="#fecdd3" />
+                <text x="58" y="289" font-size="11.5" font-weight="800" fill="#881337">3. 子宮內膜厚度 (Endometrium Thickness) &amp; 卵巢濾泡週期 (Ovarian Events)</text>
+
+                <!-- Uterine Lining Wave Shape -->
+                <path id="svg-endo-shape" d="" fill="#fb7185" opacity="0.45" stroke="#e11d48" stroke-width="2" />
+
+                <!-- Ovarian Stage Callout Box inside Panel 3 -->
+                <rect x="65" y="302" width="335" height="98" rx="10" fill="#ffffff" stroke="#fda4af" stroke-width="1.5" />
+                <g id="svg-follicle-visual">
+                  <circle cx="118" cy="350" r="26" fill="#fef3c7" stroke="#d97706" stroke-width="2.5" />
+                  <circle cx="118" cy="350" r="9" fill="#e11d48" />
+                </g>
+                <text id="svg-ovary-stage-title" x="160" y="330" font-size="12" font-weight="800" fill="#881337">Day 14: Ovulation (排卵)</text>
+                <text id="svg-ovary-stage-desc1" x="160" y="350" font-size="10.5" font-weight="600" fill="#334155">LH surge 促使成熟濾泡破裂排出卵子</text>
+                <text id="svg-ovary-stage-desc2" x="160" y="368" font-size="10.5" font-weight="600" fill="#475569">剩餘濾泡細胞將發育成 Corpus luteum</text>
+                <text id="svg-endo-desc" x="160" y="388" font-size="10.5" font-weight="800" fill="#be123c">子宮內膜：持續增厚並充滿血管</text>
+
+                <!-- Vertical Day Scrubber Line across all 3 panels -->
+                <line id="svg-day-cursor" x1="410" y1="15" x2="410" y2="415" stroke="#0f172a" stroke-width="2.5" stroke-dasharray="4 3" />
+                <rect id="svg-day-pill" x="382" y="420" width="56" height="22" rx="6" fill="#0f172a" />
+                <text id="svg-day-pill-text" x="410" y="435" text-anchor="middle" font-size="11" font-weight="800" fill="#ffffff">Day 14</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Causal Logical Chain + FLOP Hack + Misconceptions -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-slate-200/90 space-y-3 text-sm">
+              <h3 class="text-lg font-extrabold text-slate-900 border-b border-slate-100 pb-2">
+                DSE Level 5 滿分因果邏輯鏈 (Negative vs Positive Feedback)
+              </h3>
+              <div class="p-3 rounded-xl bg-sky-50/80 border border-sky-200">
+                <strong>1. 濾泡期 (Days 1–13)：</strong>腦下垂體分泌<u class="kw">follicle-stimulating hormone (FSH)</u>，刺激卵巢內<u class="kw">follicles</u>（濾泡）發育並分泌<u class="kw">oestrogen</u>（雌激素）。Oestrogen 刺激<u class="kw">endometrium</u>（子宮內膜）修復及增厚，同時以<u class="kw">negative feedback</u>抑制垂體分泌過多 FSH。
+              </div>
+              <div class="p-3 rounded-xl bg-purple-50/80 border border-purple-200">
+                <strong>2. 排卵期 (Day 14 Positive Feedback)：</strong>成熟濾泡分泌極高濃度的<u class="kw">oestrogen</u>，對腦下垂體產生<u class="kw">positive feedback</u>（正反饋），觸發急劇的<u class="kw">LH surge</u>（黃體生成素激增），促使成熟濾泡破裂並排出次級卵母細胞（<u class="kw">ovulation</u> 排卵）。
+              </div>
+              <div class="p-3 rounded-xl bg-emerald-50/80 border border-emerald-200">
+                <strong>3. 黃體期 (Days 15–28 Negative Feedback)：</strong>LH 促使排卵後的濾泡細胞發育成<u class="kw">corpus luteum</u>（黃體），分泌大量<u class="kw">progesterone</u>（孕酮）及適量 oestrogen，維持增厚且血管豐富的子宮內膜以準備胚胎<u class="kw">implantation</u>（著床）。高濃度 progesterone 以<u class="kw">negative feedback</u>抑制 FSH 及 LH，防止新濾泡在週期後半段發育。若無受精，黃體退化，progesterone 急跌引致子宮內膜脫落（<u class="kw">menstruation</u> 經期）。
+              </div>
+            </div>
+
+            <!-- FLOP Acronym Hack Card -->
+            <div class="bg-gradient-to-br from-teal-900 to-slate-900 text-white rounded-2xl p-6 shadow-sm flex flex-col justify-between space-y-4">
+              <div>
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-teal-700/70 text-teal-200 text-xs font-bold mb-3">
+                  💡 Bio Sir 記憶秘訣 (Memory Hack)
+                </div>
+                <h4 class="text-xl font-extrabold text-emerald-300 tracking-wide">
+                  神級口訣：「F-L-O-P」
+                </h4>
+                <p class="text-xs text-teal-100/90 mt-1">
+                  永遠不會搞亂腦下垂體激素與卵巢激素的配對！
+                </p>
+                <div class="mt-3 p-3.5 rounded-xl bg-white/10 border border-white/15 text-xs space-y-2.5 leading-relaxed">
+                  <p>🔹 前半週期（Days 1–13）：<strong>F</strong>SH → 促進濾泡分泌 <strong>O</strong>estrogen</p>
+                  <p>🔹 後半週期（Days 14–28）：<strong>L</strong>H → 形成黃體分泌 <strong>P</strong>rogesterone</p>
+                  <p class="pt-1 border-t border-white/10 text-emerald-200">
+                    <strong>口服避孕藥原理：</strong>含人造 oestrogen 及 progesterone，透過 <span class="underline font-bold">negative feedback</span> 持續抑制垂體分泌 <span class="underline font-bold">FSH</span> 及 <span class="underline font-bold">LH</span> → 無濾泡成熟、無 LH surge → <strong>阻止排卵 (prevents ovulation)</strong>！
+                  </p>
+                </div>
+              </div>
+              <div class="p-3 rounded-xl bg-emerald-950/80 border border-emerald-500/30 text-xs text-emerald-200">
+                <strong>試管嬰兒 (IVF) 原理：</strong>注射高劑量 FSH 刺激多個濾泡同時成熟，再用 hCG/LH 誘導取卵。
+              </div>
+            </div>
+          </div>
+
+          <!-- Common Misconceptions Table -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/90">
+            <h3 class="text-lg font-extrabold text-rose-700 mb-4">
+              ⚠️ DSE 考生常犯陷阱 (Common Misconceptions)
+            </h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                  <tr class="bg-slate-100 text-slate-700 text-xs uppercase">
+                    <th class="p-3 rounded-tl-xl font-bold w-1/4">常考概念</th>
+                    <th class="p-3 font-bold text-rose-700 w-3/8">❌ 0分 / 扣分寫法</th>
+                    <th class="p-3 rounded-tr-xl font-bold text-emerald-800 w-3/8">✅ HKEAA 滿分寫法 (Level 5)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                  <tr>
+                    <td class="p-3 font-bold text-slate-800">1. 激素分泌來源</td>
+                    <td class="p-3 text-rose-700 bg-rose-50/40">"The ovary secretes FSH and LH to trigger ovulation."</td>
+                    <td class="p-3 text-slate-800 bg-emerald-50/40">"The <u class="kw">pituitary gland</u> secretes <u class="kw">FSH</u> and <u class="kw">LH</u>, whereas the <u class="kw">ovary</u> (follicles &amp; corpus luteum) secretes <u class="kw">oestrogen</u> and <u class="kw">progesterone</u>."</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-bold text-slate-800">2. 排卵的直接觸發原因</td>
+                    <td class="p-3 text-rose-700 bg-rose-50/40">"High oestrogen directly bursts the follicle to release the egg."</td>
+                    <td class="p-3 text-slate-800 bg-emerald-50/40">"High <u class="kw">oestrogen</u> exerts <u class="kw">positive feedback</u> on the pituitary gland to cause an <u class="kw">LH surge</u>, which triggers <u class="kw">ovulation</u>."</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-bold text-slate-800">3. 口服避孕藥避孕機制</td>
+                    <td class="p-3 text-rose-700 bg-rose-50/40">"Contraceptive pills kill sperms or block fertilization directly."</td>
+                    <td class="p-3 text-slate-800 bg-emerald-50/40">"Synthetic oestrogen and progesterone inhibit the secretion of <u class="kw">FSH</u> and <u class="kw">LH</u> via <u class="kw">negative feedback</u>, thereby preventing follicle development and <u class="kw">ovulation</u>."</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- =====================================================================
+             MODULE 5: DSE PAPER 2 EXAM DRILL & MARKING SCHEME TRAINER
+             ===================================================================== -->
+        <section id="module-5" class="module-section hidden space-y-6">
+          <!-- Module Header Banner -->
+          <div class="bg-gradient-to-r from-teal-950 via-teal-900 to-slate-900 text-white rounded-2xl p-6 shadow-md flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <div class="inline-flex items-center gap-2 text-xs font-bold text-amber-300 bg-amber-500/20 border border-amber-400/40 px-3 py-1 rounded-full mb-2">
+                HKDSE Biology Paper 2 · Elective 1 Exam Simulator
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                DSE 實戰擬題與考評局評分標準 (Marking Scheme Trainer)
+              </h2>
+              <p class="text-sm text-teal-100/90 mt-1">
+                練習拆解題目指令詞 (<u class="cmd">Explain</u> / <u class="cmd">Account for</u> / <u class="cmd">Compare</u> / <u class="cmd">Suggest</u>)，並以考評局評分準則自我批改！
+              </p>
+            </div>
+            <div class="bg-white/10 border border-white/15 rounded-xl px-4 py-3 text-right shrink-0">
+              <div class="text-[11px] uppercase tracking-wider text-teal-300 font-bold">總模擬練習得分</div>
+              <div id="total-drill-score" class="text-2xl font-extrabold font-mono text-amber-300">0 / 22 Marks</div>
+            </div>
+          </div>
+
+          <!-- Question Selector Tabs -->
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            <button onclick="selectDrillQuestion(0)" id="q-tab-0" class="q-tab-btn p-3.5 rounded-xl text-left border-2 border-teal-700 bg-white shadow-sm transition">
+              <div class="flex items-center justify-between text-xs font-bold text-teal-700">
+                <span>Question 1 · [6 Marks]</span>
+                <span id="q-score-badge-0" class="font-mono bg-teal-50 px-2 py-0.5 rounded">0/6</span>
+              </div>
+              <div class="text-sm font-extrabold text-slate-900 mt-1">水分調節 (Osmoregulation)</div>
+            </button>
+
+            <button onclick="selectDrillQuestion(1)" id="q-tab-1" class="q-tab-btn p-3.5 rounded-xl text-left border border-slate-200 bg-white hover:border-teal-400 transition">
+              <div class="flex items-center justify-between text-xs font-bold text-slate-500">
+                <span>Question 2 · [5 Marks]</span>
+                <span id="q-score-badge-1" class="font-mono bg-slate-100 px-2 py-0.5 rounded">0/5</span>
+              </div>
+              <div class="text-sm font-extrabold text-slate-900 mt-1">體溫調節 (Thermoregulation)</div>
+            </button>
+
+            <button onclick="selectDrillQuestion(2)" id="q-tab-2" class="q-tab-btn p-3.5 rounded-xl text-left border border-slate-200 bg-white hover:border-teal-400 transition">
+              <div class="flex items-center justify-between text-xs font-bold text-slate-500">
+                <span>Question 3 · [6 Marks]</span>
+                <span id="q-score-badge-2" class="font-mono bg-slate-100 px-2 py-0.5 rounded">0/6</span>
+              </div>
+              <div class="text-sm font-extrabold text-slate-900 mt-1">運動氣體與心輸出量</div>
+            </button>
+
+            <button onclick="selectDrillQuestion(3)" id="q-tab-3" class="q-tab-btn p-3.5 rounded-xl text-left border border-slate-200 bg-white hover:border-teal-400 transition">
+              <div class="flex items-center justify-between text-xs font-bold text-slate-500">
+                <span>Question 4 · [5 Marks]</span>
+                <span id="q-score-badge-3" class="font-mono bg-slate-100 px-2 py-0.5 rounded">0/5</span>
+              </div>
+              <div class="text-sm font-extrabold text-slate-900 mt-1">生殖週期與避孕藥</div>
+            </button>
+          </div>
+
+          <!-- Active Question Card -->
+          <div id="drill-card-container" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/90 space-y-5">
+            <!-- Dynamically populated by JS -->
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- =========================================================================
+       JAVASCRIPT: INTERACTIVE SIMULATORS & DSE PAPER 2 EXAM TRAINER
+       ========================================================================= -->
+  <script>
+    // -------------------------------------------------------------------------
+    // 1. NAVIGATION CONTROLLER (Desktop Sidebar + Mobile Pills)
+    // -------------------------------------------------------------------------
+    function switchModule(modId) {
+      // Hide all module sections
+      document.querySelectorAll('.module-section').forEach(sec => sec.classList.add('hidden'));
+      const activeSection = document.getElementById(`module-${modId}`);
+      if (activeSection) activeSection.classList.remove('hidden');
+
+      // Update Desktop Sidebar Buttons
+      document.querySelectorAll('.nav-btn-desktop').forEach(btn => {
+        const isTarget = Number(btn.dataset.mod) === modId;
+        const isExam = Number(btn.dataset.mod) === 5;
+        if (isTarget) {
+          btn.className = 'nav-btn-desktop w-full text-left px-3.5 py-3 rounded-xl transition-all flex items-start gap-3 bg-white text-teal-950 shadow-md';
+          btn.querySelector('span').className = 'w-7 h-7 rounded-lg bg-teal-100 text-teal-800 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5';
+          btn.querySelector('div div:last-child').className = 'text-xs text-teal-700 font-medium mt-0.5';
+        } else if (isExam) {
+          btn.className = 'nav-btn-desktop w-full text-left px-3.5 py-3 rounded-xl transition-all flex items-start gap-3 bg-amber-500/15 border border-amber-400/30 text-amber-100 hover:bg-amber-500/25';
+          btn.querySelector('span').className = 'w-7 h-7 rounded-lg bg-amber-500/30 text-amber-200 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5';
+          btn.querySelector('div div:last-child').className = 'text-xs text-amber-200/90 font-medium mt-0.5';
+        } else {
+          btn.className = 'nav-btn-desktop w-full text-left px-3.5 py-3 rounded-xl transition-all flex items-start gap-3 text-teal-100 hover:bg-teal-800/60';
+          btn.querySelector('span').className = 'w-7 h-7 rounded-lg bg-teal-800/90 text-teal-200 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5';
+          btn.querySelector('div div:last-child').className = 'text-xs text-teal-300/90 font-medium mt-0.5';
+        }
+      });
+
+      // Update Mobile Nav Pills
+      document.querySelectorAll('.nav-btn-mobile').forEach(btn => {
+        const isTarget = Number(btn.dataset.mod) === modId;
+        const isExam = Number(btn.dataset.mod) === 5;
+        if (isTarget) {
+          btn.className = 'nav-btn-mobile shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all bg-white text-teal-900 shadow-sm';
+        } else if (isExam) {
+          btn.className = 'nav-btn-mobile shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all bg-amber-500/20 text-amber-200 border border-amber-400/40 hover:bg-amber-500/30';
+        } else {
+          btn.className = 'nav-btn-mobile shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all bg-teal-800/80 text-teal-100 hover:bg-teal-700';
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // -------------------------------------------------------------------------
+    // 2. MODULE 1: OSMOREGULATION INTERACTIVE ENGINE
+    // -------------------------------------------------------------------------
+    function setOsmoregulationPreset(val) {
+      const slider = document.getElementById('osmo-slider');
+      slider.value = val;
+      updateOsmoregulation(val);
+    }
+
+    function updateOsmoregulation(rawVal) {
+      const val = Number(rawVal); // 0 = severe dehydration, 50 = normal, 100 = excessive water
+      const badge = document.getElementById('osmo-state-badge');
+      const mImpulses = document.getElementById('osmo-metric-impulses');
+      const mAdh = document.getElementById('osmo-metric-adh');
+      const mPerm = document.getElementById('osmo-metric-perm');
+      const mUrine = document.getElementById('osmo-metric-urine');
+
+      const svgSensor = document.getElementById('svg-osmo-sensor-text');
+      const svgNerve = document.getElementById('svg-osmo-nerve');
+      const svgNerveLabel = document.getElementById('svg-osmo-nerve-label');
+      const svgPituitary = document.getElementById('svg-osmo-pituitary-text');
+      const svgAquaporins = document.getElementById('svg-aquaporins');
+      const svgAquaporinLabel = document.getElementById('svg-aquaporin-label');
+      const svgOsmosisArrows = document.getElementById('svg-osmosis-arrows');
+      const svgUrineFill = document.getElementById('svg-urine-fill');
+      const svgUrineText = document.getElementById('svg-urine-text');
+      const adhDotsGroup = document.getElementById('svg-adh-dots');
+
+      // Generate ADH purple dots based on ADH level (high when val is low)
+      const adhCount = Math.max(1, Math.round((100 - val) / 11));
+      let dotsMarkup = '';
+      for (let i = 0; i < adhCount; i++) {
+        const cx = 195 + (i * 25);
+        dotsMarkup += `<circle cx="${cx}" cy="308" r="5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.2" />`;
+      }
+      adhDotsGroup.innerHTML = dotsMarkup;
+
+      if (val < 35) {
+        // Dehydration / Low Blood Water Potential
+        badge.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900';
+        badge.textContent = '血液水勢下降 (Low Water Potential — Dehydration)';
+        mImpulses.textContent = 'High (頻率大增)';
+        mAdh.textContent = 'High (大量釋放)';
+        mPerm.textContent = 'High (通透性大增)';
+        mUrine.textContent = 'Small · Concentrated';
+
+        svgSensor.textContent = '狀態：偵測到血液水勢下降！刺激增強';
+        svgNerve.setAttribute('class', 'animate-flow-fast');
+        svgNerve.setAttribute('stroke-width', '5.5');
+        svgNerveLabel.textContent = '神經脈衝頻率：極高 (High)';
+        svgPituitary.textContent = '釋放大量 ADH 進入血液';
+
+        svgAquaporins.setAttribute('opacity', '1');
+        svgAquaporinLabel.textContent = 'Aquaporins 完全打開 (高通透性)';
+        svgOsmosisArrows.setAttribute('opacity', '1');
+        svgOsmosisArrows.querySelectorAll('line').forEach(l => l.setAttribute('stroke-width', '4.5'));
+
+        // Small volume dark amber concentrated urine
+        svgUrineFill.setAttribute('y', '334');
+        svgUrineFill.setAttribute('height', '12');
+        svgUrineFill.setAttribute('fill', '#d97706');
+        svgUrineText.textContent = '尿液：體積小 · 濃度高 (Concentrated)';
+      } else if (val > 65) {
+        // Excessive Water Intake / High Blood Water Potential
+        badge.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-900';
+        badge.textContent = '血液水勢上升 (High Water Potential — Excess Water)';
+        mImpulses.textContent = 'Low (頻率下降)';
+        mAdh.textContent = 'Low (釋放減少)';
+        mPerm.textContent = 'Low (通透性下降)';
+        mUrine.textContent = 'Large · Dilute';
+
+        svgSensor.textContent = '狀態：偵測到血液水勢上升！受刺激減少';
+        svgNerve.setAttribute('class', 'animate-flow-slow');
+        svgNerve.setAttribute('stroke-width', '2');
+        svgNerveLabel.textContent = '神經脈衝頻率：低 (Low)';
+        svgPituitary.textContent = '減少釋放 ADH 進入血液';
+
+        svgAquaporins.setAttribute('opacity', '0.2');
+        svgAquaporinLabel.textContent = 'Aquaporins 關閉 (低通透性)';
+        svgOsmosisArrows.setAttribute('opacity', '0.22');
+        svgOsmosisArrows.querySelectorAll('line').forEach(l => l.setAttribute('stroke-width', '1.8'));
+
+        // Large volume pale dilute urine
+        svgUrineFill.setAttribute('y', '296');
+        svgUrineFill.setAttribute('height', '50');
+        svgUrineFill.setAttribute('fill', '#fef08a');
+        svgUrineText.textContent = '尿液：體積大 · 濃度低 (Dilute Urine)';
+      } else {
+        // Normal Homeostatic State
+        badge.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-teal-100 text-teal-900';
+        badge.textContent = '正常狀態 (Normal Blood Water Potential)';
+        mImpulses.textContent = 'Moderate (適中)';
+        mAdh.textContent = 'Normal (正常)';
+        mPerm.textContent = 'Moderate (中等)';
+        mUrine.textContent = 'Medium · Normal';
+
+        svgSensor.textContent = '狀態：正常偵測血液水勢';
+        svgNerve.setAttribute('class', 'animate-flow');
+        svgNerve.setAttribute('stroke-width', '4');
+        svgNerveLabel.textContent = '神經脈衝頻率：適中';
+        svgPituitary.textContent = '釋放適量 ADH 入血液';
+
+        svgAquaporins.setAttribute('opacity', '0.75');
+        svgAquaporinLabel.textContent = 'Aquaporins 適度開啟';
+        svgOsmosisArrows.setAttribute('opacity', '0.75');
+        svgOsmosisArrows.querySelectorAll('line').forEach(l => l.setAttribute('stroke-width', '3'));
+
+        svgUrineFill.setAttribute('y', '315');
+        svgUrineFill.setAttribute('height', '31');
+        svgUrineFill.setAttribute('fill', '#facc15');
+        svgUrineText.textContent = '尿液：體積適中 · 濃度正常';
+      }
+    }
+
+    function switchOsmoChain(type) {
+      const tabLow = document.getElementById('osmo-chain-tab-low');
+      const tabHigh = document.getElementById('osmo-chain-tab-high');
+      const chainLow = document.getElementById('osmo-chain-low');
+      const chainHigh = document.getElementById('osmo-chain-high');
+
+      if (type === 'low') {
+        tabLow.className = 'px-3 py-1.5 rounded-md bg-teal-700 text-white shadow-sm transition';
+        tabHigh.className = 'px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition';
+        chainLow.classList.remove('hidden');
+        chainHigh.classList.add('hidden');
+      } else {
+        tabHigh.className = 'px-3 py-1.5 rounded-md bg-blue-700 text-white shadow-sm transition';
+        tabLow.className = 'px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition';
+        chainHigh.classList.remove('hidden');
+        chainLow.classList.add('hidden');
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 3. MODULE 2: THERMOREGULATION INTERACTIVE ENGINE
+    // -------------------------------------------------------------------------
+    function setThermoPreset(temp) {
+      const slider = document.getElementById('thermo-slider');
+      slider.value = temp;
+      updateThermoregulation(temp);
+    }
+
+    function updateThermoregulation(rawTemp) {
+      const temp = Number(rawTemp);
+      const badge = document.getElementById('thermo-state-badge');
+      const mVessel = document.getElementById('thermo-metric-vessel');
+      const mSweat = document.getElementById('thermo-metric-sweat');
+      const mHair = document.getElementById('thermo-metric-hair');
+      const mShiver = document.getElementById('thermo-metric-shiver');
+
+      const svgBrain = document.getElementById('svg-thermo-brain-status');
+      const svgArteriole = document.getElementById('svg-arteriole');
+      const svgArterioleLabel = document.getElementById('svg-arteriole-label');
+      const svgCapillaries = document.getElementById('svg-capillaries');
+      const svgShunt = document.getElementById('svg-shunt');
+      const svgSweatDrops = document.getElementById('svg-sweat-drops');
+      const svgHeatWaves = document.getElementById('svg-heat-waves');
+      const svgHairShaft = document.getElementById('svg-hair-shaft');
+      const svgErector = document.getElementById('svg-erector-muscle');
+      const svgMuscleFibers = document.getElementById('svg-muscle-fibers');
+      const svgShiverText = document.getElementById('svg-shiver-text');
+
+      if (temp <= 16) {
+        // Cold Environment
+        badge.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-sky-100 text-sky-900';
+        badge.textContent = `${temp}°C · 寒冷環境 (Cold — Conserve & Generate Heat)`;
+        mVessel.textContent = 'Vasoconstriction (收縮)';
+        mSweat.textContent = 'Minimal (極少分泌)';
+        mHair.textContent = 'Contracted (毛髮豎起)';
+        mShiver.textContent = 'Shivering (顫抖產熱)';
+
+        svgBrain.textContent = '啟動保溫 (Conserve) 及產熱 (Generate)';
+        // Arteriole constricts, shunt vessel dilates
+        svgArteriole.setAttribute('stroke-width', '3');
+        svgArterioleLabel.textContent = 'Vasoconstriction (小動脈收縮)';
+        svgCapillaries.setAttribute('opacity', '0.25');
+        svgShunt.setAttribute('stroke-width', '8');
+        svgShunt.setAttribute('opacity', '1');
+
+        // Minimal sweat & heat loss
+        svgSweatDrops.setAttribute('opacity', '0');
+        svgHeatWaves.setAttribute('opacity', '0.1');
+
+        // Hair stands upright (erector contracts)
+        svgHairShaft.setAttribute('x2', '655');
+        svgHairShaft.setAttribute('y2', '46');
+        svgErector.setAttribute('stroke-width', '7.5');
+
+        // Shivering active
+        svgMuscleFibers.setAttribute('class', 'shiver-active');
+        svgShiverText.textContent = 'Shivering 顫抖中！呼吸作用大幅產熱';
+      } else if (temp >= 31) {
+        // Hot Environment / Vigorous Exercise
+        badge.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-900';
+        badge.textContent = `${temp}°C · 炎熱 / 劇烈運動 (Hot — Increase Heat Loss)`;
+        mVessel.textContent = 'Vasodilation (舒張)';
+        mSweat.textContent = 'Profuse (大量排汗)';
+        mHair.textContent = 'Relaxed (毛髮平貼)';
+        mShiver.textContent = 'No Shivering (無顫抖)';
+
+        svgBrain.textContent = '啟動散熱機制 (Increase Heat Loss)';
+        // Arteriole dilates, shunt vessel constricts -> high blood flow in superficial capillaries
+        svgArteriole.setAttribute('stroke-width', '11');
+        svgArterioleLabel.textContent = 'Vasodilation (小動脈舒張)';
+        svgCapillaries.setAttribute('opacity', '1');
+        svgCapillaries.setAttribute('stroke-width', '6.5');
+        svgShunt.setAttribute('stroke-width', '2');
+        svgShunt.setAttribute('opacity', '0.35');
+
+        // Profuse sweat & strong heat loss
+        svgSweatDrops.setAttribute('opacity', '1');
+        svgHeatWaves.setAttribute('opacity', '1');
+
+        // Hair lies flat
+        svgHairShaft.setAttribute('x2', '718');
+        svgHairShaft.setAttribute('y2', '66');
+        svgErector.setAttribute('stroke-width', '3.5');
+
+        // No shivering
+        svgMuscleFibers.setAttribute('class', '');
+        svgShiverText.textContent = '無顫抖 (減少代謝產熱)';
+      } else {
+        // Normal Room Temp
+        badge.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-teal-100 text-teal-900';
+        badge.textContent = `${temp}°C · 正常熱平衡狀態 (Thermal Balance)`;
+        mVessel.textContent = 'Normal Diameter';
+        mSweat.textContent = 'Low / Basal';
+        mHair.textContent = 'Relaxed (毛髮平貼)';
+        mShiver.textContent = 'Normal Tone';
+
+        svgBrain.textContent = '感應血液溫度及皮膚感受器';
+        svgArteriole.setAttribute('stroke-width', '7');
+        svgArterioleLabel.textContent = 'Arteriole (小動脈正常)';
+        svgCapillaries.setAttribute('opacity', '0.65');
+        svgCapillaries.setAttribute('stroke-width', '4.5');
+        svgShunt.setAttribute('stroke-width', '5');
+        svgShunt.setAttribute('opacity', '0.7');
+
+        svgSweatDrops.setAttribute('opacity', '0.2');
+        svgHeatWaves.setAttribute('opacity', '0.25');
+
+        svgHairShaft.setAttribute('x2', '695');
+        svgHairShaft.setAttribute('y2', '52');
+        svgErector.setAttribute('stroke-width', '5');
+
+        svgMuscleFibers.setAttribute('class', '');
+        svgShiverText.textContent = '正常肌張力 (無顫抖)';
+      }
+    }
+
+    function switchThermoChain(type) {
+      const tabCold = document.getElementById('thermo-chain-tab-cold');
+      const tabHot = document.getElementById('thermo-chain-tab-hot');
+      const chainCold = document.getElementById('thermo-chain-cold');
+      const chainHot = document.getElementById('thermo-chain-hot');
+
+      if (type === 'cold') {
+        tabCold.className = 'px-3 py-1.5 rounded-md bg-sky-700 text-white shadow-sm transition';
+        tabHot.className = 'px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition';
+        chainCold.classList.remove('hidden');
+        chainHot.classList.add('hidden');
+      } else {
+        tabHot.className = 'px-3 py-1.5 rounded-md bg-rose-700 text-white shadow-sm transition';
+        tabCold.className = 'px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition';
+        chainHot.classList.remove('hidden');
+        chainCold.classList.add('hidden');
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 4. MODULE 3: GAS CONTENT IN BLOOD & EXERCISE ENGINE
+    // -------------------------------------------------------------------------
+    function setExerciseMode(mode) {
+      // Update button styles
+      document.querySelectorAll('.ex-mode-btn').forEach(btn => {
+        btn.className = 'ex-mode-btn px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition';
+      });
+      const activeBtn = document.getElementById(`ex-btn-${mode}`);
+      if (activeBtn) {
+        activeBtn.className = 'ex-mode-btn px-3 py-2 rounded-xl text-xs font-bold bg-teal-700 text-white shadow-sm transition';
+      }
+
+      const mPh = document.getElementById('ex-metric-ph');
+      const mResp = document.getElementById('ex-metric-resp');
+      const mHr = document.getElementById('ex-metric-hr');
+      const mSv = document.getElementById('ex-metric-sv');
+      const mCo = document.getElementById('ex-metric-co');
+
+      const svgMuscle = document.getElementById('svg-ex-muscle');
+      const svgAcid = document.getElementById('svg-ex-acid');
+      const svgChemo = document.getElementById('svg-ex-chemo');
+      const svgRespCentre = document.getElementById('svg-ex-resp-centre');
+      const svgSymp = document.getElementById('svg-ex-symp');
+      const svgVagus = document.getElementById('svg-ex-vagus');
+      const svgLung = document.getElementById('svg-ex-lung-action');
+      const svgHeart = document.getElementById('svg-ex-heart-action');
+      const svgDot = document.getElementById('svg-ex-graph-dot');
+
+      if (mode === 'rest') {
+        mPh.textContent = 'pH 7.40 (正常)';
+        mResp.textContent = '12 /min · 0.5 L';
+        mHr.textContent = '70 bpm';
+        mSv.textContent = '70 mL';
+        mCo.textContent = '4.90 L/min';
+
+        svgMuscle.textContent = '基礎呼吸作用 (低 CO₂)';
+        svgAcid.textContent = '血液 pH 維持 7.40';
+        svgChemo.textContent = '脈衝頻率：基礎水平';
+        svgRespCentre.textContent = '正常節律傳送脈衝';
+        svgSymp.textContent = 'Sympathetic nerve: 適中';
+        svgVagus.textContent = 'Vagus nerve: 適中抑制';
+        svgLung.textContent = '正常收縮頻率與幅度';
+        svgHeart.textContent = 'CO = 70 × 70 = 4.9 L/min';
+        svgDot.setAttribute('cx', '67');
+        svgDot.setAttribute('cy', '175');
+      } else if (mode === 'jog') {
+        mPh.textContent = 'pH 7.34 (微降)';
+        mResp.textContent = '24 /min · 1.4 L';
+        mHr.textContent = '130 bpm';
+        mSv.textContent = '105 mL';
+        mCo.textContent = '13.65 L/min';
+
+        svgMuscle.textContent = '有氧呼吸增加 (↑ CO₂)';
+        svgAcid.textContent = '碳酸形成 → pH 下降';
+        svgChemo.textContent = '脈衝頻率：明顯上升';
+        svgRespCentre.textContent = '加速傳送脈衝至呼吸肌';
+        svgSymp.textContent = 'Sympathetic nerve: ↑ 脈衝';
+        svgVagus.textContent = 'Vagus nerve: ↓ 抑制脈衝';
+        svgLung.textContent = '收縮加快加深 (24/min)';
+        svgHeart.textContent = 'CO = 130 × 105 = 13.7 L/min';
+        svgDot.setAttribute('cx', '135');
+        svgDot.setAttribute('cy', '98');
+      } else if (mode === 'sprint') {
+        mPh.textContent = 'pH 7.22 (顯著下降)';
+        mResp.textContent = '42 /min · 2.5 L';
+        mHr.textContent = '185 bpm';
+        mSv.textContent = '130 mL';
+        mCo.textContent = '24.05 L/min';
+
+        svgMuscle.textContent = '劇烈有氧 + 無氧呼吸';
+        svgAcid.textContent = '大量 CO₂ + Lactic Acid!';
+        svgChemo.textContent = '脈衝頻率：極高 (Max)';
+        svgRespCentre.textContent = '極高頻率刺激呼吸肌';
+        svgSymp.textContent = 'Sympathetic nerve: 極高刺激';
+        svgVagus.textContent = 'Vagus nerve: 抑制解除';
+        svgLung.textContent = '最大速率與深度換氣';
+        svgHeart.textContent = 'CO = 185 × 130 = 24.1 L/min';
+        svgDot.setAttribute('cx', '195');
+        svgDot.setAttribute('cy', '68');
+      } else if (mode === 'recovery') {
+        mPh.textContent = 'pH 7.31 (清還氧債中)';
+        mResp.textContent = '28 /min · 1.6 L';
+        mHr.textContent = '140 bpm';
+        mSv.textContent = '110 mL';
+        mCo.textContent = '15.40 L/min';
+
+        svgMuscle.textContent = '運動已停止，體內含高乳酸';
+        svgAcid.textContent = '清還 Oxygen Debt 中';
+        svgChemo.textContent = '高 CO₂/乳酸仍刺激感受器';
+        svgRespCentre.textContent = '維持高呼吸率吸入額外 O₂';
+        svgSymp.textContent = 'Sympathetic nerve: 仍偏高';
+        svgVagus.textContent = 'Vagus nerve: 逐步恢復';
+        svgLung.textContent = '持續深呼吸供應肝臟 O₂';
+        svgHeart.textContent = '運送乳酸至肝臟轉化糖原';
+        svgDot.setAttribute('cx', '260');
+        svgDot.setAttribute('cy', '132');
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 5. MODULE 4: HORMONAL CONTROL OF REPRODUCTIVE CYCLE
+    // -------------------------------------------------------------------------
+    let currentCycleMode = 'normal';
+    let currentCycleDay = 14;
+    let cycleTimer = null;
+
+    function setCycleMode(mode) {
+      currentCycleMode = mode;
+      document.querySelectorAll('.cyc-mode-btn').forEach(btn => {
+        btn.className = 'cyc-mode-btn px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition';
+      });
+      const activeBtn = document.getElementById(`cyc-btn-${mode}`);
+      if (activeBtn) {
+        activeBtn.className = 'cyc-mode-btn px-3 py-2 rounded-xl text-xs font-bold bg-teal-700 text-white shadow-sm transition';
+      }
+
+      const banner = document.getElementById('cyc-mode-banner');
+      if (mode === 'normal') {
+        banner.className = 'p-3.5 rounded-xl bg-teal-50 border border-teal-200 text-xs sm:text-sm text-teal-950 font-medium';
+        banner.innerHTML = '<strong>正常 28 天週期：</strong>第 12–13 天高濃度 <u class="kw">oestrogen</u> 對腦下垂體產生 <u class="kw">positive feedback</u>，觸發第 14 天的 <u class="kw">LH surge</u> 引致 <u class="kw">ovulation</u>。';
+      } else if (mode === 'pill') {
+        banner.className = 'p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs sm:text-sm text-amber-950 font-medium';
+        banner.innerHTML = '<strong>口服避孕藥 (Contraceptive Pills)：</strong>每日攝取人造 oestrogen 及 progesterone，透過 <u class="kw">negative feedback</u> 持續抑制腦下垂體分泌 <u class="kw">FSH</u> 及 <u class="kw">LH</u> → <strong>消除 LH surge，阻止濾泡成熟及排卵 (<u class="kw">ovulation</u>)</strong>！';
+      } else if (mode === 'ivf') {
+        banner.className = 'p-3.5 rounded-xl bg-purple-50 border border-purple-200 text-xs sm:text-sm text-purple-950 font-medium';
+        banner.innerHTML = '<strong>不育治療 (Fertility Drugs / IVF)：</strong>注射外源性 <u class="kw">FSH</u>（或服食抗雌激素藥物阻斷負反饋）以刺激卵巢同時發育<strong>多個成熟濾泡 (multiple mature follicles)</strong>，供體外受精取卵。';
+      }
+
+      renderCycleCurves();
+      updateCycleDay(currentCycleDay);
+    }
+
+    function renderCycleCurves() {
+      const lhPath = document.getElementById('svg-lh-curve');
+      const fshPath = document.getElementById('svg-fsh-curve');
+      const oestPath = document.getElementById('svg-oest-curve');
+      const progPath = document.getElementById('svg-prog-curve');
+      const endoShape = document.getElementById('svg-endo-shape');
+
+      // X maps Day 1 -> 65, Day 28 -> 755 (step ~25.55 px/day)
+      const dayToX = d => 65 + ((d - 1) / 27) * 690;
+
+      if (currentCycleMode === 'normal') {
+        // LH: flat low, huge surge at Day 14 (y=45), then low
+        lhPath.setAttribute('d', `M ${dayToX(1)} 112 L ${dayToX(11)} 108 Q ${dayToX(13)} 102 ${dayToX(14)} 42 Q ${dayToX(15)} 104 ${dayToX(17)} 112 L ${dayToX(28)} 115`);
+        // FSH: moderate Days 1-5, dips, small peak at Day 14, low in luteal phase
+        fshPath.setAttribute('d', `M ${dayToX(1)} 95 Q ${dayToX(4)} 82 ${dayToX(10)} 104 Q ${dayToX(14)} 74 ${dayToX(16)} 108 L ${dayToX(28)} 112`);
+        // Oestrogen: rises to peak at Day 12-13, drops after ovulation, secondary rise in luteal phase (Day 21), drops at Day 27
+        oestPath.setAttribute('d', `M ${dayToX(1)} 242 Q ${dayToX(8)} 230 ${dayToX(12.5)} 172 Q ${dayToX(15)} 222 ${dayToX(21)} 195 Q ${dayToX(26)} 232 ${dayToX(28)} 242`);
+        // Progesterone: flat low Days 1-14, rises steeply Days 15-21 (corpus luteum), drops Days 25-28
+        progPath.setAttribute('d', `M ${dayToX(1)} 246 L ${dayToX(14)} 245 Q ${dayToX(17)} 190 ${dayToX(21)} 174 Q ${dayToX(25)} 188 ${dayToX(28)} 244`);
+        // Endometrium: sheds Days 1-5, thickens Days 6-26, sheds Day 28
+        endoShape.setAttribute('d', `M 65 410 L 65 385 Q 140 404 170 402 Q 350 375 560 368 Q 710 370 755 396 L 755 410 Z`);
+      } else if (currentCycleMode === 'pill') {
+        // Flattened FSH & LH (no surge!)
+        lhPath.setAttribute('d', `M ${dayToX(1)} 116 L ${dayToX(14)} 116 L ${dayToX(28)} 116`);
+        fshPath.setAttribute('d', `M ${dayToX(1)} 118 L ${dayToX(14)} 118 L ${dayToX(28)} 118`);
+        // Steady exogenous hormone levels (Days 1-21 active pills, Days 22-28 placebo withdrawal bleed)
+        oestPath.setAttribute('d', `M ${dayToX(1)} 212 L ${dayToX(21)} 212 L ${dayToX(23)} 242 L ${dayToX(28)} 242`);
+        progPath.setAttribute('d', `M ${dayToX(1)} 204 L ${dayToX(21)} 204 L ${dayToX(23)} 244 L ${dayToX(28)} 244`);
+        // Thin endometrium
+        endoShape.setAttribute('d', `M 65 410 L 65 398 L 575 398 L 755 405 L 755 410 Z`);
+      } else if (currentCycleMode === 'ivf') {
+        // Elevated FSH stimulation -> very high oestrogen -> triggered LH surge
+        lhPath.setAttribute('d', `M ${dayToX(1)} 110 L ${dayToX(12)} 105 Q ${dayToX(14)} 38 ${dayToX(16)} 105 L ${dayToX(28)} 114`);
+        fshPath.setAttribute('d', `M ${dayToX(1)} 72 L ${dayToX(12)} 68 Q ${dayToX(14)} 60 ${dayToX(16)} 102 L ${dayToX(28)} 110`);
+        oestPath.setAttribute('d', `M ${dayToX(1)} 238 Q ${dayToX(8)} 195 ${dayToX(13)} 164 Q ${dayToX(16)} 205 ${dayToX(21)} 180 L ${dayToX(28)} 235`);
+        progPath.setAttribute('d', `M ${dayToX(1)} 245 L ${dayToX(14)} 244 Q ${dayToX(18)} 172 ${dayToX(22)} 166 L ${dayToX(28)} 230`);
+        endoShape.setAttribute('d', `M 65 410 L 65 385 Q 160 400 380 366 Q 580 362 755 385 L 755 410 Z`);
+      }
+    }
+
+    function setCycleDay(day) {
+      document.getElementById('cyc-slider').value = day;
+      updateCycleDay(day);
+    }
+
+    function updateCycleDay(rawDay) {
+      currentCycleDay = Number(rawDay);
+      const day = currentCycleDay;
+      const xPos = 65 + ((day - 1) / 27) * 690;
+
+      // Move vertical cursor
+      const cursor = document.getElementById('svg-day-cursor');
+      const pill = document.getElementById('svg-day-pill');
+      const pillText = document.getElementById('svg-day-pill-text');
+      cursor.setAttribute('x1', xPos);
+      cursor.setAttribute('x2', xPos);
+      pill.setAttribute('x', xPos - 28);
+      pillText.setAttribute('x', xPos);
+      pillText.textContent = `Day ${day}`;
+
+      const dayBadge = document.getElementById('cyc-day-badge');
+      const stageTitle = document.getElementById('svg-ovary-stage-title');
+      const stageDesc1 = document.getElementById('svg-ovary-stage-desc1');
+      const stageDesc2 = document.getElementById('svg-ovary-stage-desc2');
+      const endoDesc = document.getElementById('svg-endo-desc');
+      const follicleVis = document.getElementById('svg-follicle-visual');
+
+      if (currentCycleMode === 'pill') {
+        dayBadge.textContent = `Day ${day} · 口服避孕藥抑制週期 (Negative Feedback)`;
+        stageTitle.textContent = `Day ${day}: 濾泡發育受抑制 (No Ovulation)`;
+        stageDesc1.textContent = '人造雌激素及孕酮負反饋抑制 FSH & LH';
+        stageDesc2.textContent = '無成熟濾泡形成，亦無 LH surge 觸發排卵';
+        endoDesc.textContent = '子宮內膜保持薄弱，不利胚胎著床';
+        follicleVis.innerHTML = `<circle cx="118" cy="350" r="14" fill="#e2e8f0" stroke="#64748b" stroke-width="2" /><text x="118" y="354" text-anchor="middle" font-size="9" font-weight="800" fill="#475569">休眠</text>`;
+        return;
+      }
+
+      if (day <= 5) {
+        dayBadge.textContent = `Day ${day} · 經期 (Menstruation Phase)`;
+        stageTitle.textContent = `Day ${day}: 經期 & 早期濾泡 (Primary Follicle)`;
+        stageDesc1.textContent = '黃體退化令 Progesterone 急跌，子宮內膜脫落';
+        stageDesc2.textContent = 'Pituitary 開始分泌 FSH 刺激新濾泡生長';
+        endoDesc.textContent = '子宮內膜：剝落並隨經血排出體外';
+        follicleVis.innerHTML = `<circle cx="118" cy="350" r="14" fill="#fde68a" stroke="#d97706" stroke-width="2" /><circle cx="118" cy="350" r="5" fill="#e11d48" />`;
+      } else if (day <= 13) {
+        dayBadge.textContent = `Day ${day} · 濾泡期 (Follicular Phase — Oestrogen Rising)`;
+        stageTitle.textContent = `Day ${day}: 濾泡發育成熟 (Graafian Follicle)`;
+        stageDesc1.textContent = currentCycleMode === 'ivf' ? '外源性 FSH 促使多個濾泡同時發育成熟' : 'FSH 刺激濾泡生長並分泌越來越多 Oestrogen';
+        stageDesc2.textContent = day >= 12 ? '極高 Oestrogen 產生 Positive Feedback 觸發 LH surge' : 'Oestrogen 修復並增厚子宮內膜';
+        endoDesc.textContent = '子宮內膜：在 Oestrogen 刺激下迅速修復及增厚';
+        follicleVis.innerHTML = currentCycleMode === 'ivf'
+          ? `<circle cx="106" cy="342" r="15" fill="#fef3c7" stroke="#d97706" stroke-width="2" /><circle cx="132" cy="346" r="15" fill="#fef3c7" stroke="#d97706" stroke-width="2" /><circle cx="118" cy="364" r="15" fill="#fef3c7" stroke="#d97706" stroke-width="2" />`
+          : `<circle cx="118" cy="350" r="24" fill="#fef3c7" stroke="#d97706" stroke-width="2.5" /><circle cx="124" cy="346" r="7" fill="#e11d48" />`;
+      } else if (day === 14) {
+        dayBadge.textContent = `Day 14 · 排卵日 (Ovulation — LH Surge!)`;
+        stageTitle.textContent = `Day 14: 排卵 (Ovulation)`;
+        stageDesc1.textContent = 'LH surge 促使成熟濾泡破裂並排出卵子';
+        stageDesc2.textContent = '卵子進入輸卵管 (Oviduct) 等待受精';
+        endoDesc.textContent = '子宮內膜：持續增厚並充滿血管';
+        follicleVis.innerHTML = `<path d="M 96 350 A 22 22 0 1 1 134 334" fill="none" stroke="#d97706" stroke-width="3" /><circle cx="143" cy="326" r="7" fill="#e11d48" />`;
+      } else {
+        dayBadge.textContent = `Day ${day} · 黃體期 (Luteal Phase — Progesterone High)`;
+        stageTitle.textContent = `Day ${day}: 黃體形成 (Corpus Luteum)`;
+        stageDesc1.textContent = 'LH 刺激排卵後的濾泡發育成 Corpus luteum';
+        stageDesc2.textContent = '分泌大量 Progesterone (負反饋抑制 FSH & LH)';
+        endoDesc.textContent = day >= 26 ? '無受精 → 黃體退化，Progesterone 下降準備經期' : '子宮內膜：高度血管化 (Vascularized) 準備著床';
+        follicleVis.innerHTML = `<polygon points="118,325 139,338 134,366 102,366 97,338" fill="#facc15" stroke="#ca8a04" stroke-width="2.5" />`;
+      }
+    }
+
+    function toggleCyclePlay() {
+      const btn = document.getElementById('cyc-play-btn');
+      if (cycleTimer) {
+        clearInterval(cycleTimer);
+        cycleTimer = null;
+        btn.textContent = '▶ 自動播放週期';
+      } else {
+        btn.textContent = '⏸ 暫停播放';
+        cycleTimer = setInterval(() => {
+          const nextDay = currentCycleDay >= 28 ? 1 : currentCycleDay + 1;
+          setCycleDay(nextDay);
+        }, 550);
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 6. MODULE 5: DSE PAPER 2 EXAM DRILL & MARKING SCHEME TRAINER
+    // -------------------------------------------------------------------------
+    const drillQuestions = [
+      {
+        id: 0,
+        topic: 'Subtopic 5.1 · Osmoregulation (水分調節)',
+        marks: 6,
+        promptHtml: `A marathon runner ran for two hours on a hot day without drinking water. <u class="cmd">Explain</u> how his body regulates the water content of his blood during the race. <span class="font-mono font-bold text-slate-700">[6 marks]</span>`,
+        promptZh: `一名馬拉松跑手在炎熱天氣下跑步兩小時且沒有飲水。試解釋（Explain）其身體在比賽期間如何調節血液中的水分含量。[6分]`,
+        keywordBank: ['water potential', 'osmoreceptors', 'hypothalamus', 'pituitary gland', 'antidiuretic hormone (ADH)', 'permeability', 'collecting duct', 'osmosis', 'concentrated urine'],
+        markingPoints: [
+          { code: '1M', text: 'Sweating without water intake causes the <u class="kw">water potential</u> of the blood to decrease.' },
+          { code: '1M', text: 'This decrease is detected by <u class="kw">osmoreceptors</u> in the <u class="kw">hypothalamus</u>.' },
+          { code: '1M', text: 'The hypothalamus stimulates the <u class="kw">pituitary gland</u> to release more <u class="kw">antidiuretic hormone (ADH)</u> into the bloodstream.' },
+          { code: '1M', text: 'ADH increases the <u class="kw">permeability</u> of the wall of the <u class="kw">collecting duct</u> to water.' },
+          { code: '1M', text: 'A greater proportion of water in the filtrate is reabsorbed into the blood capillaries by <u class="kw">osmosis</u>.' },
+          { code: '1A', text: 'A smaller volume of <u class="kw">concentrated urine</u> is produced, restoring the blood water potential back to normal.' }
+        ],
+        comparison: [
+          { bad: 'The water level in his blood drops.', good: 'The <u class="kw">water potential</u> of his blood decreases.' },
+          { bad: 'ADH absorbs water from the kidney tubules.', good: 'ADH increases the <u class="kw">permeability</u> of the <u class="kw">collecting duct</u> wall to water so more water is reabsorbed by <u class="kw">osmosis</u>.' }
+        ]
+      },
+      {
+        id: 1,
+        topic: 'Subtopic 5.2 · Thermoregulation (體溫調節)',
+        marks: 5,
+        promptHtml: `During vigorous cycling, a cyclist's skin appears flushed (reddish) and covered with sweat. <u class="cmd">Account for</u> these two observations in terms of body temperature regulation. <span class="font-mono font-bold text-slate-700">[5 marks]</span>`,
+        promptZh: `在劇烈踩單車期間，單車手的皮膚顯得泛紅並佈滿汗水。試從體溫調節的角度解釋（Account for）這兩項觀察結果。[5分]`,
+        keywordBank: ['thermoregulatory centre', 'hypothalamus', 'vasodilation', 'arterioles', 'conduction, convection and radiation', 'sweat glands', 'evaporation of sweat', 'latent heat of vaporization'],
+        markingPoints: [
+          { code: '1M', text: 'Vigorous muscle contraction increases respiration and generates excess heat, which is detected by the <u class="kw">thermoregulatory centre</u> in the <u class="kw">hypothalamus</u>.' },
+          { code: '1M', text: '<u class="kw">Vasodilation</u> of the <u class="kw">arterioles</u> near the skin surface occurs, increasing blood flow to the superficial <u class="kw">capillaries</u> (causing the skin to look flushed).' },
+          { code: '1M', text: 'This increases heat loss from the blood to the surroundings by <u class="kw">conduction, convection and radiation</u>.' },
+          { code: '1M', text: '<u class="kw">Sweat glands</u> are stimulated to secrete more sweat onto the skin surface.' },
+          { code: '1A', text: 'The <u class="kw">evaporation of sweat</u> absorbs <u class="kw">latent heat of vaporization</u> from the skin, cooling the body down.' }
+        ],
+        comparison: [
+          { bad: 'Capillaries dilate and move closer to the skin.', good: '<u class="kw">Arterioles</u> near the skin surface undergo <u class="kw">vasodilation</u>, increasing blood flow through superficial capillaries.' },
+          { bad: 'Sweat takes away body heat directly.', good: '<u class="kw">Evaporation of sweat</u> absorbs <u class="kw">latent heat of vaporization</u> from the skin.' }
+        ]
+      },
+      {
+        id: 2,
+        topic: 'Subtopic 5.3 · Gas Content & Cardiac Output (氣體調節與心輸出量)',
+        marks: 6,
+        promptHtml: `<u class="cmd">Explain</u> how the nervous system coordinates the increase in oxygen supply to skeletal muscles during vigorous running. <span class="font-mono font-bold text-slate-700">[6 marks]</span>`,
+        promptZh: `試解釋（Explain）神經系統如何在劇烈跑步時協調增加骨骼肌的氧氣供應。[6分]`,
+        keywordBank: ['carbon dioxide concentration', 'pH', 'chemoreceptors', 'medulla oblongata', 'intercostal muscles', 'diaphragm', 'sympathetic nerve', 'sinoatrial (SA) node', 'cardiac output'],
+        markingPoints: [
+          { code: '1M', text: 'Increased respiration in skeletal muscles produces more <u class="kw">carbon dioxide</u>, lowering the <u class="kw">pH</u> of the blood.' },
+          { code: '1M', text: '<u class="kw">Chemoreceptors</u> in the <u class="kw">carotid/aortic bodies</u> and <u class="kw">medulla oblongata</u> detect this and send more nerve impulses to the respiratory and cardiovascular centres.' },
+          { code: '1M', text: 'The <u class="kw">respiratory centre</u> sends more impulses to the <u class="kw">intercostal muscles</u> and <u class="kw">diaphragm</u>, causing them to contract faster and more forcefully.' },
+          { code: '1M', text: 'The rate and depth of breathing increase, accelerating oxygen uptake into the blood at the alveoli.' },
+          { code: '1M', text: 'The <u class="kw">cardiovascular centre</u> sends more impulses via the <u class="kw">sympathetic nerve</u> (and fewer via the vagus nerve) to the <u class="kw">sinoatrial (SA) node</u>.' },
+          { code: '1A', text: 'Both <u class="kw">heart rate</u> and <u class="kw">stroke volume</u> increase, raising <u class="kw">cardiac output</u> to transport oxygenated blood faster to skeletal muscles.' }
+        ],
+        comparison: [
+          { bad: 'Lack of oxygen stimulates the medulla oblongata.', good: 'Increased <u class="kw">carbon dioxide concentration</u> / lower <u class="kw">pH</u> stimulates <u class="kw">chemoreceptors</u>.' },
+          { bad: 'The brain makes the heart beat faster directly.', good: 'More impulses travel via the <u class="kw">sympathetic nerve</u> to the <u class="kw">sinoatrial (SA) node</u>, increasing <u class="kw">cardiac output</u>.' }
+        ]
+      },
+      {
+        id: 3,
+        topic: 'Subtopic 5.4 · Hormonal Control of Cycle (生殖週期與避孕)',
+        marks: 5,
+        promptHtml: `Combined oral contraceptive pills contain synthetic oestrogen and progesterone. <u class="cmd">Explain</u> how taking these pills daily prevents pregnancy, and <u class="cmd">suggest</u> why placebo (hormone-free) pills are included in the last 7 days of a 28-day pack. <span class="font-mono font-bold text-slate-700">[5 marks]</span>`,
+        promptZh: `混合口服避孕藥含有人造雌激素及孕酮。試解釋（Explain）每日服用此藥如何防止懷孕，並建議（Suggest）為何在 28 天藥片裝的最後 7 天加入不含激素的安慰劑（Placebo pills）。[5分]`,
+        keywordBank: ['negative feedback', 'pituitary gland', 'FSH', 'LH', 'follicle development', 'LH surge', 'ovulation', 'endometrium', 'menstruation'],
+        markingPoints: [
+          { code: '1M', text: 'High levels of synthetic oestrogen and progesterone exert <u class="kw">negative feedback</u> on the <u class="kw">pituitary gland</u>.' },
+          { code: '1M', text: 'This inhibits the secretion of <u class="kw">FSH</u> and <u class="kw">LH</u>, preventing <u class="kw">follicle development</u> and eliminating the mid-cycle <u class="kw">LH surge</u>.' },
+          { code: '1M', text: 'Consequently, <u class="kw">ovulation</u> does not occur (no egg is released for fertilization).' },
+          { code: '1M', text: 'During the 7 hormone-free days, the drop in hormone levels causes the <u class="kw">endometrium</u> (uterine lining) to break down and shed (<u class="kw">menstruation</u> / withdrawal bleeding).' },
+          { code: '1A', text: 'This mimics a natural 28-day menstrual cycle (and helps maintain the daily pill-taking habit).' }
+        ],
+        comparison: [
+          { bad: 'The pills kill the egg cells inside the ovary.', good: 'Synthetic hormones inhibit <u class="kw">FSH</u> and <u class="kw">LH</u> secretion via <u class="kw">negative feedback</u>, preventing <u class="kw">ovulation</u>.' },
+          { bad: 'The 7 sugar pills are for nutrition.', good: 'The 7 hormone-free days allow hormone levels to drop so <u class="kw">menstruation</u> occurs, mimicking a normal 28-day cycle.' }
+        ]
+      }
+    ];
+
+    // Store student answers, revealed states, and checked points
+    const drillState = drillQuestions.map(q => ({
+      answer: '',
+      revealed: false,
+      checked: new Array(q.markingPoints.length).fill(false)
+    }));
+
+    let activeDrillIdx = 0;
+
+    function selectDrillQuestion(idx) {
+      activeDrillIdx = idx;
+      drillQuestions.forEach((_, i) => {
+        const btn = document.getElementById(`q-tab-${i}`);
+        if (i === idx) {
+          btn.className = 'q-tab-btn p-3.5 rounded-xl text-left border-2 border-teal-700 bg-white shadow-sm transition';
+        } else {
+          btn.className = 'q-tab-btn p-3.5 rounded-xl text-left border border-slate-200 bg-white hover:border-teal-400 transition';
+        }
+      });
+      renderDrillCard();
+    }
+
+    function renderDrillCard() {
+      const q = drillQuestions[activeDrillIdx];
+      const st = drillState[activeDrillIdx];
+      const container = document.getElementById('drill-card-container');
+
+      const score = st.checked.filter(Boolean).length;
+
+      container.innerHTML = `
+        <!-- Question Metadata Header -->
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-teal-900 text-white font-mono text-xs font-bold">HKDSE Paper 2</span>
+            <span class="text-xs font-bold text-teal-800 bg-teal-50 border border-teal-200 px-2.5 py-1 rounded-md">${q.topic}</span>
+          </div>
+          <span class="text-xs font-extrabold font-mono text-rose-700 bg-rose-50 border border-rose-200 px-3 py-1 rounded-full">
+            Full Marks: ${q.marks}M
+          </span>
+        </div>
+
+        <!-- Question Text -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/90 space-y-2">
+          <p class="text-base sm:text-lg font-semibold text-slate-900 leading-relaxed">${q.promptHtml}</p>
+          <p class="text-xs sm:text-sm text-slate-600">${q.promptZh}</p>
+        </div>
+
+        <!-- Student Answer Textarea -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label for="drill-textarea" class="text-xs font-bold uppercase tracking-wider text-slate-700">
+              你的作答區 (Write your structured response in EMI / Bilingual DSE style):
+            </label>
+            <button onclick="insertKeywordHint()" class="text-xs font-bold text-teal-700 hover:text-teal-900 underline">
+              顯示關鍵詞提示池 (Keyword Bank)
+            </button>
+          </div>
+
+          <div id="drill-kw-bank" class="hidden flex-wrap gap-1.5 p-3 rounded-xl bg-teal-50/80 border border-teal-200">
+            <span class="text-[11px] font-bold text-teal-900 mr-1">必備關鍵詞：</span>
+            ${q.keywordBank.map(kw => `<span class="px-2 py-0.5 rounded bg-white border border-teal-300 text-xs font-mono font-semibold text-teal-900">${kw}</span>`).join('')}
+          </div>
+
+          <textarea id="drill-textarea" rows="5" placeholder="請按因果邏輯順序 (Stimulus → Receptor → Coordination Centre → Effector → Response) 寫出完整句子..." class="w-full rounded-xl border border-slate-300 p-3.5 text-sm text-slate-900 focus:border-teal-600 focus:ring-2 focus:ring-teal-500/20 outline-none transition" oninput="saveDrillAnswer(this.value)">${st.answer}</textarea>
+        </div>
+
+        <!-- Action Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <button onclick="toggleMarkingScheme()" class="px-5 py-2.5 rounded-xl bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold shadow-sm transition flex items-center gap-2">
+            <span>${st.revealed ? '隱藏評分標準 (Hide Marking Scheme)' : '核對考評局評分標準 (Reveal Marking Scheme)'}</span>
+          </button>
+          <span class="text-xs text-slate-500 font-medium">
+            💡 提示：點擊核對後，請勾選你成功寫出的得分點以計算分數。
+          </span>
+        </div>
+
+        <!-- Marking Scheme Reveal Panel -->
+        <div class="${st.revealed ? 'block' : 'hidden'} space-y-5 pt-4 border-t-2 border-dashed border-slate-200">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h4 class="text-base font-extrabold text-teal-950">
+              📋 HKEAA 考評局官方評分標準與自我核對表 (Self-Grading Checklist)
+            </h4>
+            <div class="px-3.5 py-1.5 rounded-xl bg-emerald-100 text-emerald-950 font-mono text-sm font-extrabold">
+              本題得分：${score} / ${q.marks} Marks
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            ${q.markingPoints.map((mp, i) => `
+              <label class="flex items-start gap-3 p-3 rounded-xl border cursor-pointer transition ${st.checked[i] ? 'bg-emerald-50/90 border-emerald-400' : 'bg-white border-slate-200 hover:bg-slate-50'}">
+                <input type="checkbox" class="mt-1 w-4 h-4 accent-teal-700 rounded cursor-pointer" ${st.checked[i] ? 'checked' : ''} onchange="toggleCheckPoint(${i})" />
+                <div class="flex-1 text-sm text-slate-800 leading-relaxed">
+                  <span class="inline-block font-mono text-xs font-extrabold px-2 py-0.5 rounded bg-teal-800 text-white mr-2">${mp.code}</span>
+                  ${mp.text}
+                </div>
+              </label>
+            `).join('')}
+          </div>
+
+          <!-- Chinglish vs Level 5 Academic English Comparison -->
+          <div class="rounded-xl border border-slate-200 overflow-hidden">
+            <div class="bg-slate-100 px-4 py-2 text-xs font-extrabold text-slate-800">
+              🔍 本題常見扣分寫法 vs Level 5 滿分學術英文對照
+            </div>
+            <div class="divide-y divide-slate-200 text-xs sm:text-sm">
+              ${q.comparison.map(c => `
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                  <div class="p-3 bg-rose-50/50 text-rose-800">
+                    <span class="font-bold">❌ 0分寫法：</span>${c.bad}
+                  </div>
+                  <div class="p-3 bg-emerald-50/50 text-slate-900">
+                    <span class="font-bold text-emerald-800">✅ Level 5 寫法：</span>${c.good}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function saveDrillAnswer(val) {
+      drillState[activeDrillIdx].answer = val;
+    }
+
+    function insertKeywordHint() {
+      const bank = document.getElementById('drill-kw-bank');
+      if (bank) {
+        bank.classList.toggle('hidden');
+        bank.classList.toggle('flex');
+      }
+    }
+
+    function toggleMarkingScheme() {
+      drillState[activeDrillIdx].revealed = !drillState[activeDrillIdx].revealed;
+      renderDrillCard();
+    }
+
+    function toggleCheckPoint(ptIdx) {
+      const st = drillState[activeDrillIdx];
+      st.checked[ptIdx] = !st.checked[ptIdx];
+      updateDrillScoreBadges();
+      renderDrillCard();
+    }
+
+    function updateDrillScoreBadges() {
+      let totalEarned = 0;
+      let totalPossible = 0;
+      drillQuestions.forEach((q, i) => {
+        const earned = drillState[i].checked.filter(Boolean).length;
+        totalEarned += earned;
+        totalPossible += q.marks;
+        const badge = document.getElementById(`q-score-badge-${i}`);
+        if (badge) {
+          badge.textContent = `${earned}/${q.marks}`;
+          if (earned === q.marks) {
+            badge.className = 'font-mono bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded font-bold';
+          } else {
+            badge.className = 'font-mono bg-teal-50 text-teal-800 px-2 py-0.5 rounded';
+          }
+        }
+      });
+      const totalEl = document.getElementById('total-drill-score');
+      if (totalEl) {
+        totalEl.textContent = `${totalEarned} / ${totalPossible} Marks`;
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 7. INITIALIZE ALL MODULES ON LOAD
+    // -------------------------------------------------------------------------
+    window.addEventListener('DOMContentLoaded', () => {
+      updateOsmoregulation(50);
+      updateThermoregulation(25);
+      setExerciseMode('rest');
+      renderCycleCurves();
+      updateCycleDay(14);
+      selectDrillQuestion(0);
+    });
+  </script>
+</body>
+</html>
